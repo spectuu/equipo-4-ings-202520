@@ -15,8 +15,8 @@ Los siguientes requisitos no funcionales aseguran la calidad, seguridad y usabil
 ## [P1] Importantes
 
 4. La interfaz debe ser accesible y usable para adultos mayores, con fuentes legibles y navegación intuitiva.  
-5. El sistema debe estar optimizado para funcionar en dispositivos con bajos recursos (RAM < 2 GB).  
-6. La aplicación debe funcionar sin conexión para registrar tomas y actualizar inventario; los datos se sincronizan al recuperar conexión.  
+5. El sistema debe estar optimizado para funcionar en dispositivos con bajos recursos.  
+6. La aplicación debe funcionar sin conexión para registrar tomas y actualizar inventario; los datos se sincronizan al recuperar conexión. *****Cambiar****  
 7. El sistema debe permitir exportar la información del usuario en formato PDF y JSON.  
 8. El sistema debe realizar copias de seguridad automáticas (locales o en la nube) cada 24 horas, si el usuario lo permite.
 
