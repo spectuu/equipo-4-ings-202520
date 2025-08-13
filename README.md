@@ -1,3 +1,5 @@
+![MEDICOD](images/image.jpg)
+
 # MEDICOD– Seguimiento de Medicamentos
 
 Este repositorio contiene el análisis inicial del proyecto MEDICOD, una aplicación móvil para el seguimiento de toma de medicamentos, manejo de inventario en casa, recordatorios automáticos y reseñas de pastillas.
