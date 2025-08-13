@@ -40,6 +40,12 @@ Scenario: Detectar medicamentos por agotarse
   When accede al inventario
   Then el sistema debe mostrar una alerta de "medicamento por agotarse"
 
+[P2]
+Scenario: Buscar un medicamento en el inventario
+  Given el usuario tiene varios medicamentos registrados
+  When escribe el nombre del medicamento en el buscador
+  Then el sistema muestra los resultados que coinciden con la búsqueda
+
 ## Recordatorios y alarmas
 
 Feature: Recordatorios y alarmas
@@ -102,7 +108,19 @@ Scenario: Ver resumen de satisfacción
   When el usuario consulta estadísticas
   Then puede ver el promedio de estrellas y porcentaje de satisfacción
 
-## Otros procesos
+##Seguridad y acceso
+
+Feature: Seguridad y acceso
+
+[P0]
+Scenario: Iniciar sesión en la aplicación
+  Given el usuario tiene una cuenta registrada
+  When ingresa su correo y contraseña correctos
+  Then el sistema permite el acceso a la aplicación
+
+## Historial de reportes
+
+Feature: Historial de reportes
 
 [P1]
 Scenario: Generar reporte mensual
