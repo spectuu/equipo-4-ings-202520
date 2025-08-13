@@ -122,9 +122,3 @@ Scenario: Cargar respaldo de datos
   When selecciona "Restaurar datos"
   Then el sistema importa la información previa
 
-
----
-
-### `doc/analysis/requirements-nfn.md`
-
-```markdown
