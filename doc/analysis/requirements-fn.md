@@ -117,6 +117,7 @@ Scenario: Iniciar sesión en la aplicación
   Given el usuario tiene una cuenta registrada
   When ingresa su correo y contraseña correctos
   Then el sistema permite el acceso a la aplicación
+
 [P1]
 Scenario: Cerrar sesión
   Given el usuario está autenticado
