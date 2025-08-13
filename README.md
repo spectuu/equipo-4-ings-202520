@@ -1,7 +1,7 @@
 # MEDICOD– Seguimiento de Medicamentos
 
 Este repositorio contiene el análisis inicial del proyecto MEDICOD, una aplicación móvil para el seguimiento de toma de medicamentos, manejo de inventario en casa, recordatorios automáticos y reseñas de pastillas.
-MEDICOD está dirigido a personas mayores que suelen olvidar la toma de medicamentos y enfermeros para mantener un tracking de las medicinas.
+MEDICOD está dirigido a pacientes crónicos, personas mayores que suelen olvidar la toma de medicamentos y personal de la salud para mantener un tracking de las medicinas.
 
 ## Equipo
 
