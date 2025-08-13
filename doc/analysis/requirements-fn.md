@@ -8,6 +8,8 @@ A continuación se listan los 20 requisitos funcionales del sistema MEDICOD, esc
 
 ```gherkin
 
+Feature: Inventario de medicamentos
+
 [P1]
 Scenario: Registrar un nuevo medicamento
   Given el usuario está en la sección de inventario
