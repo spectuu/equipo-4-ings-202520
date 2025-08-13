@@ -10,7 +10,7 @@ A continuación se listan los 20 requisitos funcionales del sistema MEDICOD, esc
 
 Feature: Inventario de medicamentos
 
-[P1]
+[P0]
 Scenario: Registrar un nuevo medicamento
   Given el usuario está en la sección de inventario
   When ingresa el nombre, dosis y cantidad
@@ -34,13 +34,15 @@ Scenario: Visualizar medicamentos en inventario
   When accede al módulo de inventario
   Then ve una lista con todos los medicamentos y su cantidad restante
 
-[P1]
+[P0]
 Scenario: Detectar medicamentos por agotarse
   Given el usuario tiene medicamentos con menos de 3 unidades restantes
   When accede al inventario
   Then el sistema debe mostrar una alerta de "medicamento por agotarse"
 
 ## Recordatorios y alarmas
+
+Feature: Recordatorios y alarmas
 
 [P0]
 Scenario: Configurar un recordatorio diario
@@ -74,6 +76,8 @@ Scenario: Ver historial de tomas
 
 ## Reseñas de medicamentos
 
+Feature: Reseñas de medicamentos
+
 [P1]
 Scenario: Calificar un medicamento
   Given el usuario ha estado usando un medicamento por al menos 7 días
@@ -106,21 +110,5 @@ Scenario: Generar reporte mensual
   When solicita un reporte
   Then el sistema genera un PDF con tomas, omisiones y calificaciones
 
-[P2]
-Scenario: Recibir recomendaciones personalizadas
-  Given el sistema detecta un patrón de omisiones frecuentes
-  When el usuario accede a su perfil
-  Then se muestran consejos o recordatorios para mejorar la adherencia
 
-[P2]
-Scenario: Importar lista de medicamentos desde receta
-  Given el usuario escanea una receta médica
-  When la app reconoce los medicamentos
-  Then los añade automáticamente al inventario para su confirmación
-
-[P2]
-Scenario: Cargar respaldo de datos
-  Given el usuario tiene un archivo de respaldo
-  When selecciona "Restaurar datos"
-  Then el sistema importa la información previa
 
