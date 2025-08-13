@@ -80,6 +80,12 @@ Scenario: Ver historial de tomas
   When accede al historial
   Then el sistema muestra fechas, horas y estado de cada toma
 
+[P2]
+Scenario: Desactivar un recordatorio
+  Given el usuario tiene un recordatorio activo
+  When selecciona la opción "Desactivar"
+  Then el sistema detiene las notificaciones para ese medicamento
+
 ## Reseñas de medicamentos
 
 Feature: Reseñas de medicamentos
