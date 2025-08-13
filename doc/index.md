@@ -6,7 +6,13 @@ Este proyecto tiene como objetivo el diseño de un sistema de gestión, monitore
 
 Muchas personas con tratamientos médicos crónicos u ocasionales olvidan tomar sus medicamentos, pierden el control de su inventario o no hacen seguimiento de los efectos de cada pastilla. Esto pone en riesgo su salud, especialmente en adultos mayores o personas con múltiples prescripciones médicas.
 
-MEDICOD busca facilitar esta gestión mediante una app móvil intuitiva y segura.
+MEDICOD busca facilitar esta gestión mediante una app móvil intuitiva y segura, que permita:
+
+- Programar recordatorios personalizados para cada medicamento.
+- Registrar la toma y efectos secundarios de forma rápida.
+- Llevar un inventario actualizado de medicamentos con alertas de reposición.
+- Compartir el historial con familiares o profesionales de la salud.
+- Acceder a información confiable sobre cada fármaco.
 
 ## Público objetivo
 
