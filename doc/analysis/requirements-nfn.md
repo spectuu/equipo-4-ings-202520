@@ -8,7 +8,7 @@ Los siguientes requisitos no funcionales aseguran la calidad, seguridad y usabil
 
 1. El sistema debe garantizar una disponibilidad del 99% para no interrumpir el seguimiento de medicamentos.  
 2. Toda la información personal y médica debe estar cifrada en tránsito y en almacenamiento local.  
-3. El sistema debe emitir notificaciones puntuales con una tolerancia máxima de 5 segundos respecto a la hora programada.
+3. El sistema debe emitir notificaciones puntuales con respecto a la hora programada.
 
 ---
 
