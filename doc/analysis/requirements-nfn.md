@@ -23,6 +23,6 @@ Los siguientes requisitos no funcionales aseguran la calidad, seguridad y usabil
 
 ## [P2] Deseables
 
-8.La app debe mostrar consejos o tutoriales breves para nuevos usuarios..
+8.La app debe mostrar consejos o tutoriales breves para nuevos usuarios.
 9.La aplicación debe permitir cambiar el tamaño del texto en toda la interfaz.
 10.La interfaz debe mantener el mismo diseño y comportamiento en dispositivos de diferentes marcas.
