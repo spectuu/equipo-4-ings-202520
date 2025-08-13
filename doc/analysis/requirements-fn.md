@@ -117,6 +117,17 @@ Scenario: Iniciar sesión en la aplicación
   Given el usuario tiene una cuenta registrada
   When ingresa su correo y contraseña correctos
   Then el sistema permite el acceso a la aplicación
+[P1]
+Scenario: Cerrar sesión
+  Given el usuario está autenticado
+  When selecciona "Cerrar sesión"
+  Then el sistema finaliza la sesión y regresa a la pantalla de inicio
+ 
+[P2]
+Scenario: Recuperar contraseña
+  Given el usuario olvidó su contraseña
+  When solicita restablecerla e ingresa su correo
+  Then el sistema envía un enlace para crear una nueva contraseña
 
 ## Historial de reportes
 
