@@ -187,3 +187,4 @@ Criterios de aceptación:
   When solicita un reporte
   Then el sistema genera un PDF con tomas, omisiones y calificaciones
 Prioridad: [P1]
+```
