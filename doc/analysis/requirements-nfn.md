@@ -4,8 +4,8 @@ Los siguientes requisitos no funcionales aseguran la calidad, seguridad y usabil
 
 ---
 
+```gherkin
 ## Feature: Disponibilidad y seguridad
-
 NREQ-001 – Disponibilidad del sistema del 99%
 Descripción/justificación: El sistema debe garantizar una disponibilidad mínima del 99% para no interrumpir el seguimiento de medicamentos.
 Criterios de aceptación:
@@ -93,3 +93,4 @@ Criterios de aceptación:
   When navega por las funciones
   Then el diseño, colores, iconos y distribución se mantienen consistentes
 Prioridad: [P2]
+```
