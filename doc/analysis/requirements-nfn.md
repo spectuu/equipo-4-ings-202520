@@ -13,7 +13,7 @@ Criterios de aceptación:
   When se mide la disponibilidad en un periodo mensual
   Then el uptime debe ser igual o superior al 99%
 Prioridad: [P0]
-Puntos: 13
+Puntos: 5
 
 NREQ-002 – Cifrado de información personal y médica
 Descripción/justificación: Toda la información personal y médica debe estar cifrada tanto en tránsito como en almacenamiento local para proteger la privacidad del usuario.
@@ -22,7 +22,7 @@ Criterios de aceptación:
   When los datos son transmitidos o almacenados
   Then se debe aplicar cifrado en tránsito y en almacenamiento local
 Prioridad: [P0]
-Puntos: 8
+Puntos: 5
 
 NREQ-003 – Emisión puntual de notificaciones
 Descripción/justificación: El sistema debe emitir notificaciones en el momento exacto programado, evitando retrasos que puedan comprometer el tratamiento.
@@ -62,7 +62,7 @@ Criterios de aceptación:
   When selecciona "Eliminar" o una opción irreversible
   Then el sistema muestra un mensaje de confirmación antes de proceder
 Prioridad: [P1]
-Puntos: 1
+Puntos: 2
 
 NREQ-007 – Exportación de datos en PDF y JSON
 Descripción/justificación: El sistema debe permitir al usuario exportar su información personal y médica en formato PDF y JSON.
@@ -71,7 +71,7 @@ Criterios de aceptación:
   When selecciona el formato PDF o JSON
   Then el sistema genera el archivo en el formato elegido y lo pone disponible para descarga
 Prioridad: [P1]
-Puntos: 8
+Puntos: 3
 
 ---
 
