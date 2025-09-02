@@ -135,7 +135,7 @@ Criterios de aceptación:
   When accede a la opción de calificar
   Then puede dejar una puntuación de 1 a 5 estrellas
 Prioridad: [P1]
-Puntos: 0
+Puntos: 2
 
 RF-RES-002 – Escribir una reseña
 Descripción/justificación: Permite escribir un comentario sobre la experiencia con un medicamento ya calificado.
@@ -193,7 +193,7 @@ Criterios de aceptación:
   When solicita restablecerla e ingresa su correo
   Then el sistema envía un enlace para crear una nueva contraseña
 Prioridad: [P2]
-Puntos: 8
+Puntos: 5
 
 ## Historial de reportes
 
