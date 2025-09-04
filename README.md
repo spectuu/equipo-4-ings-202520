@@ -18,3 +18,4 @@ MEDICOD está dirigido a pacientes crónicos, personas mayores que suelen olvida
 - [Análisis del sistema](doc/analysis/index.md)
 - [Requisitos funcionales](doc/analysis/requirements-fn.md)
 - [Requisitos no funcionales](doc/analysis/requirements-nfn.md)
+- [MVP](doc/analysis/mvp.md)

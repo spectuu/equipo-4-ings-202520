@@ -6,3 +6,4 @@ Esta sección contiene el análisis detallado del sistema MEDICOD.
 
 - [Requisitos funcionales](requirements-fn.md)
 - [Requisitos no funcionales](requirements-nfn.md)
+- [MVP](mvp.md)
