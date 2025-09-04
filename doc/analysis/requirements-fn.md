@@ -185,8 +185,17 @@ Criterios de aceptación:
   Then el sistema finaliza la sesión y regresa a la pantalla de inicio
 Prioridad: [P1]
 Puntos: 5
+
+RF-SEG-003 – Registrar usuario
+Descripción/justificación: Permite crear un perfil de usuario.
+Criterios de aceptación:
+  Given el usuario coloca sus datos
+  When selecciona "Registrarse"
+  Then el sistema crea el usuario y lo envia a la pantalla de inicio
+Prioridad: [P0]
+Puntos: 3
  
-RF-SEG-003 – Recuperar contraseña
+RF-SEG-004 – Recuperar contraseña
 Descripción/justificación: Permite restablecer la contraseña en caso de olvido mediante un enlace enviado por correo.
 Criterios de aceptación:
   Given el usuario olvidó su contraseña
