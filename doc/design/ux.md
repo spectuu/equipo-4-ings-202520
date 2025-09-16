@@ -4,7 +4,7 @@
 
 ## Entry
 
-!(image)[https://imgur.com/a/nWIgdC1]
+![Imgur Image](https://imgur.com/a/nWIgdC1.png)
 
 ## Reminders
 
