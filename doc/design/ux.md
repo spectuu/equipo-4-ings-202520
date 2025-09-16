@@ -4,14 +4,14 @@
 
 ## Entry
 
-![Imgur Image](https://imgur.com/a/nWIgdC1)
+![Entry](https://i.imgur.com/EsfX3Ii.jpg)
 
 ## Reminders
 
-![Reminders](./images/ux/reminders/reminders.png)
+![Reminders](https://i.imgur.com/Nvhnwdb.jpg)
 
 ## Stock
 
-![Stock](./images/ux/stock/stock.png)
+![Stock](https://i.imgur.com/SRXaoX1.jpg)
 
                                  
