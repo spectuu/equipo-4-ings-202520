@@ -1,61 +1,94 @@
 # DIAGRAMS
 
-## Ad hoc: Este es nuestro diagrama Ad hoc donde se muestra la estructura general del sistema, sus componentes, cómo se comunican y desde dónde se accede.
-![Ad hoc diagram](./images/diagrams/adhoc_diagram.png)
+## Ad hoc: 
 
-## Use case: Este es nuestro diagrama de usos donde se muestran las funciones principales que pueden realizar los usuarios en el sistema.
+Este es nuestro diagrama Ad hoc donde se muestra la estructura general del sistema, sus componentes, cómo se comunican y desde dónde se accede.
 
-![Use case diagram](./images/diagrams/use_case_diagram.png)
+![Ad hoc](https://i.imgur.com/ss5gVKM.png)
 
-## Sequence diagrams: Estos son los diagramas de secuencia para cada caso de uso.
+## Use case: 
 
-## -Sequence diagram IS: Diagrama de secuencia para el inicio de sesión.
+Este es nuestro diagrama de usos donde se muestran las funciones principales que pueden realizar los usuarios en el sistema.
 
-![Sequence diagram IS](./images/diagrams/sequence_diagram_is.png)
+![Use case](https://i.imgur.com/HGS9OBI.png)
 
-## -Sequence diagram RU: Diagrama de secuencia para el registro de usuario.
+## Sequence diagrams: 
 
-![Sequence diagram RU](./images/diagrams/sequence_diagram_ru.png)
+Estos son los diagramas de secuencia para cada caso de uso.
 
-## -Sequence diagram CS: Diagrama de secuencia para cerrar sesión.
+## -Sequence diagram IS: 
 
-![Sequence diagram CS](./images/diagrams/sequence_diagram_cs.png)
+Diagrama de secuencia para el inicio de sesión.
 
-## -Sequence diagram RM: Diagrama de secuencia para registrar un medicamento. 
+![Sequence diagram IS](https://i.imgur.com/TfRLW63.png)
 
-![Sequence diagram RM](./images/diagrams/sequence_diagram_rm.png)
+## -Sequence diagram RU: 
 
-## -Sequence diagram EM: Diagrama de secuencia para editar un medicamento.
+Diagrama de secuencia para el registro de usuario.
 
-![Sequence diagram EM](./images/diagrams/sequence_diagram_em.png)
+![Sequence diagram RU](https://i.imgur.com/60yr1aJ.png)
 
-## -Sequence diagram VI: Diagrama de secuencia para visualizar el inventario.
+## -Sequence diagram CS: 
 
-![Sequence diagram VI](./images/diagrams/sequence_diagram_vi.png)
+Diagrama de secuencia para cerrar sesión.
 
-## -Sequence diagram BM: Diagrama de secuencia para buscar un medicamento.
+![Sequence diagram CS](https://i.imgur.com/ckQ7LKP.png)
 
-![Sequence diagram BM](./images/diagrams/sequence_diagram_bm.png)
+## -Sequence diagram RM: 
 
-## -Sequence diagram MA: Diagrama de secuencia para mostrar los medicamentos por agotarse. 
+Diagrama de secuencia para registrar un medicamento. 
 
-![Sequence diagram MA](./images/diagrams/sequence_diagram_ma.png)
+![Sequence diagram RM](https://i.imgur.com/0ypJfXb.png)
 
-## -Sequence diagram CR: Diagrama de secuencia para crear un recordatorio.
+## -Sequence diagram EM: 
 
-![Sequence diagram CR](./images/diagrams/sequence_diagram_cr.png)
+Diagrama de secuencia para editar un medicamento.
 
-## -Sequence diagram RN: Diagrama de secuencia para recibir notificaciones.
+![Sequence diagram EM](https://i.imgur.com/295MO9O.png)
 
-![Sequence diagram RN](./images/diagrams/sequence_diagram_rn.png)
+## -Sequence diagram VI: 
 
-## -Sequence diagram DR: Diagrama de secuencia para desactivar un recordatorio.
+Diagrama de secuencia para visualizar el inventario.
 
-![Sequence diagram DR](./images/diagrams/sequence_diagram_dr.png)
+![Sequence diagram VI](https://i.imgur.com/1UxmTbK.png)
 
-## Relational model diagram: Este diagrama muestra la base de datos relacional del sistema.
+## -Sequence diagram BM: 
 
-![Relational model diagram](./images/diagrams/relational_model_diagram.png)
+Diagrama de secuencia para buscar un medicamento.
 
-## Component diagram: Este diagrama de componentes muestra cómo se organiza el sistema en módulos.
+![Sequence diagram BM](https://i.imgur.com/hkVfHLx.png)
+
+## -Sequence diagram MA: 
+
+Diagrama de secuencia para mostrar los medicamentos por agotarse. 
+
+![Sequence diagram MA](https://i.imgur.com/ygTlAla.png)
+
+## -Sequence diagram CR: 
+
+Diagrama de secuencia para crear un recordatorio.
+
+![Sequence diagram CR](https://i.imgur.com/px0y8wB.png)
+
+## -Sequence diagram RN: 
+
+Diagrama de secuencia para recibir notificaciones.
+
+![Sequence diagram RN](https://i.imgur.com/ef1Ll7M.png)
+
+## -Sequence diagram DR: 
+
+Diagrama de secuencia para desactivar un recordatorio.
+
+![Sequence diagram DR](https://i.imgur.com/OCFdS19.png)
+
+## Relational model diagram: 
+
+Este diagrama muestra la base de datos relacional del sistema.
+
+![Relational model diagram](https://i.imgur.com/PeAduRx.png)
+
+## Component diagram: 
+
+Este diagrama de componentes muestra cómo se organiza el sistema en módulos.
 
