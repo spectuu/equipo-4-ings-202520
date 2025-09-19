@@ -92,3 +92,8 @@ Este diagrama muestra la base de datos relacional del sistema.
 
 Este diagrama de componentes muestra cómo se organiza el sistema en módulos.
 
+![Component diagram](https://i.imgur.com/Iyjb3tj.png)
+
+
+
+

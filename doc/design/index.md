@@ -1,4 +1,4 @@
-# Documentación de Diseño
+# Documentación del Diseño
 
 Este directorio contiene los archivos de diseño del sistema.  
 
