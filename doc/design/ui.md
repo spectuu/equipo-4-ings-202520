@@ -2,6 +2,8 @@
 
 Este documento contiene los diseños de interfaz de usuario (UI) para la aplicación de gestión de medicamentos y recordatorios. Incluye las pantallas principales del sistema, desde el inicio de sesión hasta la gestión completa de medicamentos y recordatorios.
 
+*link*: https://www.figma.com/design/87nLGcZ0jJO5aRZxcH9YZw/UI-s-MEDICOD?node-id=0-1&t=EtjAFffJ9n7ZpUU8-1
+
 # Iniciar Sesión
 
 Pantalla de inicio de sesión donde los usuarios pueden acceder a su cuenta utilizando sus credenciales.
