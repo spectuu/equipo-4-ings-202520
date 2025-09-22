@@ -14,5 +14,5 @@ Este directorio contiene los archivos de diseño del sistema.
 - [Frontend](./fe.md)  
 - [Backend](./be.md)  
 - [Diagramas](./diagrams.md)  
-- [UI](./ui.md)  
-- [UX](./ux.md)
+- [UX](./ux.md)
+- [UI](./ui.md)
