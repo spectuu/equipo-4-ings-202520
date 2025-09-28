@@ -16,6 +16,12 @@ Pantalla de registro de nuevos usuarios donde se pueden crear cuentas con inform
 
 ![Crear Cuenta](https://i.imgur.com/vveR9r0.png)
 
+# Home
+
+Pantalla principal del sistema donde los usuarios pueden ver un resumen de sus medicamentos, recordatorios próximos y acceder rápidamente a las funciones principales.
+
+![Home](https://imgur.com/xSErGvS.png)
+
 # Recordatorios
 
 Vista principal de recordatorios donde los usuarios pueden ver todos sus recordatorios activos y gestionarlos.
@@ -32,7 +38,7 @@ Formulario para crear nuevos recordatorios con opciones de personalización de h
 
 Pantalla de edición de recordatorios existentes, permitiendo modificar horarios, tipos y configuraciones.
 
-![Editar un Recordatorio](https://i.imgur.com/LFWQhRw.png)
+![Editar un Recordatorio](https://imgur.com/Ax5V9ue.png)
 
 # Crear un Medicamento
 
