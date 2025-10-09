@@ -3,7 +3,6 @@ import { getToken } from "./token";
 
 const PUBLIC_ROUTES = ["/auth/login", "/auth/register"];
 
-// Usar la misma baseURL del backend (medicod) para todas las llamadas API
 const axiosInstance = axios.create({
   baseURL: "http://localhost:8080/medicod/dev",
 });

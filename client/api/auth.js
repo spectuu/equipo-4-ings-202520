@@ -12,7 +12,6 @@ export const register = async (email, username, password) => {
 
     return { token };
   } catch (err) {
-    // Re-throw with a clearer message o propaga el error original
     const message = err?.response?.data?.message || err.message || "Registration failed";
     throw new Error(message);
   }

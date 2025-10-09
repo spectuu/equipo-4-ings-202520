@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
+import { register } from '../api/auth';
+import { setToken } from '../api/token';
 
 const SignupForm = () => {
   const [formData, setFormData] = useState({
@@ -17,8 +20,32 @@ const SignupForm = () => {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const router = useRouter();
+
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    setError(null);
+
+    const { username, email, password, confirmPassword } = formData;
+
+    if (password !== confirmPassword) {
+      setError('Las contraseñas no coinciden');
+      return;
+    }
+
+    try {
+      setLoading(true);
+      const result = await register(email, username, password);
+      setToken(result.token);
+      router.push('/');
+    } catch (err) {
+      setError(err.message || 'Error al registrar');
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -78,9 +105,13 @@ const SignupForm = () => {
           />
         </div>
 
-        <button type="submit" className="register-button">
-          Registrarse
+        <button type="submit" className="register-button" disabled={loading}>
+          {loading ? 'Registrando...' : 'Registrarse'}
         </button>
+
+        {error && <p className="form-error">{error}</p>}
+
+        <p className="login-link">¿Ya tienes cuenta? <Link href="/login">Inicia sesión</Link></p>
 
       </form>
     </div>
