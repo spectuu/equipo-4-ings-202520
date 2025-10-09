@@ -138,6 +138,7 @@ a {
   padding: 40px;
   width: 100%;
   max-width: 400px;
+
 }
 
 .signup-title {
@@ -174,10 +175,13 @@ a {
   text-align: left;
   margin-bottom: 40px;
   margin-top: 0;
+  letter-spacing: -0.5px;
 }
 
 .form-group {
   margin-bottom: 24px;
+  position: relative;
+  
 }
 
 .form-group label {
@@ -186,10 +190,12 @@ a {
   font-weight: 400;
   color: #666;
   margin-bottom: 8px;
+  transition: color 0.3s ease;
 }
 
 .form-group input {
   width: 100%;
+
   padding: 16px;
   border: 1px solid #e0e0e0;
   border-radius: 8px;
@@ -198,6 +204,7 @@ a {
   color: #333;
   box-sizing: border-box;
   transition: border-color 0.2s ease;
+
 }
 
 .form-group input:focus {
@@ -225,11 +232,13 @@ a {
 }
 
 .register-button:hover {
-  background-color: #b85c1a;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(102, 126, 234, 0.3);
 }
 
 .register-button:active {
-  background-color: #a0520d;
+  transform: translateY(0);
+  box-shadow: 0 5px 15px rgba(102, 126, 234, 0.2);
 }
 
 .register-button:disabled {
@@ -548,8 +557,9 @@ a {
   .login-form {
     padding: 30px 20px;
     margin: 10px;
+    border-radius: 20px;
   }
-  
+
   .signup-title,
   .login-title {
     font-size: 28px;
@@ -572,4 +582,44 @@ a {
     width: 100%;
     max-width: 250px;
   }
+}
+
+/* Animaciones adicionales */
+.form-group input {
+  animation: fadeInUp 0.6s ease-out forwards;
+  animation-delay: calc(var(--animation-order, 0) * 0.1s);
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.form-group:nth-child(1) input { --animation-order: 1; }
+.form-group:nth-child(2) input { --animation-order: 2; }
+.form-group:nth-child(3) input { --animation-order: 3; }
+.form-group:nth-child(4) input { --animation-order: 4; }
+
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Efecto de partículas en el fondo */
+.signup-container::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 40% 40%, rgba(120, 119, 198, 0.2) 0%, transparent 50%);
+  animation: float 20s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-20px) rotate(180deg); }
 }

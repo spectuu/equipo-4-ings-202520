@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
+import { register } from '../api/auth';
+import { setToken } from '../api/token';
 
 const SignupForm = () => {
   const [formData, setFormData] = useState({
@@ -17,8 +20,32 @@ const SignupForm = () => {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const router = useRouter();
+
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    setError(null);
+
+    const { username, email, password, confirmPassword } = formData;
+
+    if (password !== confirmPassword) {
+      setError('Las contraseñas no coinciden');
+      return;
+    }
+
+    try {
+      setLoading(true);
+      const result = await register(email, username, password);
+      setToken(result.token);
+      router.push('/');
+    } catch (err) {
+      setError(err.message || 'Error al registrar');
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -27,12 +54,12 @@ const SignupForm = () => {
         <h2 className="signup-title">Crear cuenta</h2>
         
         <div className="form-group">
-          <label htmlFor="username">Nombre de usuario</label>
+          <label htmlFor="username">👤 Nombre de usuario</label>
           <input
             type="text"
             id="username"
             name="username"
-            placeholder="tu usuario"
+            placeholder="Tu usuario"
             value={formData.username}
             onChange={handleInputChange}
             required
@@ -40,12 +67,12 @@ const SignupForm = () => {
         </div>
 
         <div className="form-group">
-          <label htmlFor="email">Email</label>
+          <label htmlFor="email">📧 Email</label>
           <input
             type="email"
             id="email"
             name="email"
-            placeholder="tu@email.com"
+            placeholder="Tu@email.com"
             value={formData.email}
             onChange={handleInputChange}
             required
@@ -53,7 +80,7 @@ const SignupForm = () => {
         </div>
 
         <div className="form-group">
-          <label htmlFor="password">Contraseña</label>
+          <label htmlFor="password">🔒 Contraseña</label>
           <input
             type="password"
             id="password"
@@ -66,7 +93,7 @@ const SignupForm = () => {
         </div>
 
         <div className="form-group">
-          <label htmlFor="confirmPassword">Confirmar contraseña</label>
+          <label htmlFor="confirmPassword">🔐 Confirmar contraseña</label>
           <input
             type="password"
             id="confirmPassword"
@@ -78,8 +105,8 @@ const SignupForm = () => {
           />
         </div>
 
-        <button type="submit" className="register-button">
-          Registrarse
+        <button type="submit" className="register-button" disabled={loading}>
+          {loading ? 'Registrando...' : 'Registrarse'}
         </button>
 
         <p className="login-link">¿Ya tienes cuenta? <Link href="/login">Inicia sesión</Link></p>
