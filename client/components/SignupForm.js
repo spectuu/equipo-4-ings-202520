@@ -27,12 +27,12 @@ const SignupForm = () => {
         <h2 className="signup-title">Crear cuenta</h2>
         
         <div className="form-group">
-          <label htmlFor="username">Nombre de usuario</label>
+          <label htmlFor="username">👤 Nombre de usuario</label>
           <input
             type="text"
             id="username"
             name="username"
-            placeholder="tu usuario"
+            placeholder="Tu usuario"
             value={formData.username}
             onChange={handleInputChange}
             required
@@ -40,12 +40,12 @@ const SignupForm = () => {
         </div>
 
         <div className="form-group">
-          <label htmlFor="email">Email</label>
+          <label htmlFor="email">📧 Email</label>
           <input
             type="email"
             id="email"
             name="email"
-            placeholder="tu@email.com"
+            placeholder="Tu@email.com"
             value={formData.email}
             onChange={handleInputChange}
             required
@@ -53,7 +53,7 @@ const SignupForm = () => {
         </div>
 
         <div className="form-group">
-          <label htmlFor="password">Contraseña</label>
+          <label htmlFor="password">🔒 Contraseña</label>
           <input
             type="password"
             id="password"
@@ -66,7 +66,7 @@ const SignupForm = () => {
         </div>
 
         <div className="form-group">
-          <label htmlFor="confirmPassword">Confirmar contraseña</label>
+          <label htmlFor="confirmPassword">🔐 Confirmar contraseña</label>
           <input
             type="password"
             id="confirmPassword"
