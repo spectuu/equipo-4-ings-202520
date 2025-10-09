@@ -151,6 +151,35 @@ a {
   margin-top: 0;
 }
 
+/* Estilos para el formulario de login - mismo diseño que signup */
+.login-container {
+  min-height: 100vh;
+  background-color: lightblue;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  font-family: 'Arial', sans-serif;
+}
+
+.login-form {
+  background-color: lightcyan;
+  border-radius: 12px;
+  padding: 40px;
+  width: 100%;
+  max-width: 400px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+}
+
+.login-title {
+  font-size: 24px;
+  font-weight: bold;
+  color: #000;
+  text-align: center;
+  margin-bottom: 30px;
+  margin-top: 0;
+}
+
 .form-group {
   margin-bottom: 20px;
 }
@@ -209,11 +238,59 @@ a {
   background-color: #a0520d;
 }
 
+/* Botón de login - mismo estilo que register pero diferente color */
+.login-button {
+  width: 100%;
+  padding: 14px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: bold;
+  font-style: italic;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
+.login-button:hover {
+  background-color: #0056b3;
+}
+
+.login-button:active {
+  background-color: #004085;
+}
+
+.login-button:disabled {
+  background-color: #6c757d;
+  cursor: not-allowed;
+}
+
 .login-link {
   text-align: center;
   color: #666;
   font-size: 14px;
   margin: 0;
+}
+
+.signup-link {
+  text-align: center;
+  color: #666;
+  font-size: 14px;
+  margin: 0;
+}
+
+.form-error {
+  background-color: #f8d7da;
+  color: #721c24;
+  padding: 10px;
+  border-radius: 6px;
+  margin-bottom: 15px;
+  text-align: center;
+  border: 1px solid #f5c6cb;
+  font-size: 14px;
 }
 
 .login-link-text {
@@ -231,12 +308,14 @@ a {
 
 /* Responsive design */
 @media (max-width: 480px) {
-  .signup-form {
+  .signup-form,
+  .login-form {
     padding: 30px 20px;
     margin: 10px;
   }
   
-  .signup-title {
+  .signup-title,
+  .login-title {
     font-size: 20px;
   }
 

@@ -20,6 +20,9 @@ export default function Home() {
             <Link href="/signup" className="cta-button primary">
               Crear Cuenta
             </Link>
+            <Link href="/login" className="cta-button secondary">
+              Iniciar Sesión
+            </Link>
           </div>
         </div>
       </div>
