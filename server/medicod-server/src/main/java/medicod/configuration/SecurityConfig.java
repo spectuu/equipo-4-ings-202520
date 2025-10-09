@@ -22,7 +22,6 @@ import java.util.List;
 @RequiredArgsConstructor
 public class SecurityConfig {
 
-
     @Autowired
     private JWTConfig jwtConfig;
 

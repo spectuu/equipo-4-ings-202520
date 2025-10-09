@@ -1,0 +1,143 @@
+import React, { useState, useEffect } from 'react';
+import { isAuthenticated, removeToken } from '../api/token';
+import { useRouter } from 'next/router';
+
+const UserMenu = () => {
+  const [isOpen, setIsOpen] = useState(false);
+  const router = useRouter();
+
+  const toggleMenu = () => {
+    setIsOpen(!isOpen);
+  };
+
+  const handleLogout = () => {
+    // removeToken();
+    // router.push('/login');
+    console.log('Cerrar sesión (no implementado)');
+    setIsOpen(false);
+  };
+
+  const handleProfile = () => {
+    console.log('Ir al perfil (no implementado)');
+    setIsOpen(false);
+  };
+
+  return (
+    <div className="user-menu">
+      <button className="user-menu-button" onClick={toggleMenu}>
+        P
+      </button>
+      {isOpen && (
+        <div className="user-menu-dropdown">
+          <button onClick={handleProfile} className="menu-item">
+            Ir al perfil
+          </button>
+          <button onClick={handleLogout} className="menu-item">
+            Cerrar sesión
+          </button>
+        </div>
+      )}
+    </div>
+  );
+};
+
+const Home = () => {
+  const [currentTime, setCurrentTime] = useState('');
+  const [currentDate, setCurrentDate] = useState('');
+  const router = useRouter();
+
+  useEffect(() => {
+    // Verificar si está autenticado
+    if (!isAuthenticated()) {
+      router.push('/login');
+      return;
+    }
+
+    // Actualizar fecha y hora
+    const updateDateTime = () => {
+      const now = new Date();
+      const timeString = now.toLocaleTimeString('es-ES', { 
+        hour: '2-digit', 
+        minute: '2-digit',
+        hour12: false 
+      });
+      const dateString = now.toLocaleDateString('es-ES', { 
+        weekday: 'long', 
+        day: 'numeric',
+        month: 'long'
+      });
+      
+      setCurrentTime(timeString);
+      setCurrentDate(dateString);
+    };
+
+    updateDateTime();
+    const interval = setInterval(updateDateTime, 60000); // Actualizar cada minuto
+
+    return () => clearInterval(interval);
+  }, [router]);
+
+  const mockReminders = [
+    {
+      time: '7:30 pm',
+      medication: 'Paracetamol 500mg'
+    },
+    {
+      time: '9:00 pm',
+      medication: 'Vitamina C'
+    }
+  ];
+
+  return (
+    <div className="home-container">
+      <div className="home-content">
+        {/* Header con saludo y menú */}
+        <div className="home-header">
+          <div className="greeting">
+            <h1>Hola, Usuario 👋</h1>
+          </div>
+          <UserMenu />
+        </div>
+
+        {/* Fecha y hora */}
+        <div className="datetime-section">
+          <p className="current-date">{currentDate}</p>
+          <h2 className="current-time">{currentTime}</h2>
+        </div>
+
+        {/* Próximos recordatorios */}
+        <div className="reminders-section">
+          <h3>Próximos recordatorios</h3>
+          <div className="reminders-list">
+            {mockReminders.map((reminder, index) => (
+              <div key={index} className="reminder-item">
+                <div className="reminder-icon">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <path d="M9 12l2 2 4-4"/>
+                    <circle cx="12" cy="12" r="10"/>
+                  </svg>
+                </div>
+                <div className="reminder-content">
+                  <div className="reminder-time">{reminder.time}</div>
+                  <div className="reminder-medication">{reminder.medication}</div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Botones principales */}
+        <div className="main-buttons">
+          <button className="main-button inventory-button">
+            Inventario
+          </button>
+          <button className="main-button reminders-button">
+            Recordatorios
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default Home;

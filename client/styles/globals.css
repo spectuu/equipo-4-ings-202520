@@ -122,64 +122,57 @@ a {
   box-shadow: 0 4px 12px rgba(255, 255, 255, 0.3);
 }
 
-/* Estilos para el formulario de registro */
+/* Estilos para el formulario de registro - nuevo diseño minimalista */
 .signup-container {
   min-height: 100vh;
-  background: linear-gradient(135deg, #54C0D6 0%, #59E3FF 100%);
+  background-color: white;
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 20px;
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  position: relative;
-}
-
-.signup-container::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="50" cy="50" r="0.5" fill="rgba(255,255,255,0.1)"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
-  opacity: 0.3;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 }
 
 .signup-form {
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(20px);
-  border-radius: 24px;
-  padding: 48px 40px;
+  background-color: white;
+  padding: 40px;
   width: 100%;
-  max-width: 420px;
-  box-shadow: 
-    0 20px 40px rgba(0, 0, 0, 0.1),
-    0 0 0 1px rgba(255, 255, 255, 0.2);
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  position: relative;
-  z-index: 1;
-  animation: slideUp 0.6s ease-out;
-}
+  max-width: 400px;
 
-@keyframes slideUp {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
 }
 
 .signup-title {
   font-size: 32px;
-  font-weight: 700;
-  background: linear-gradient(135deg, #409BFF 0%, #409BFF 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  text-align: center;
+  font-weight: 500;
+  color: #333;
+  text-align: left;
+  margin-bottom: 40px;
+  margin-top: 0;
+}
+
+/* Estilos para el formulario de login - nuevo diseño minimalista */
+.login-container {
+  min-height: 100vh;
+  background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.login-form {
+  background-color: white;
+  padding: 40px;
+  width: 100%;
+  max-width: 400px;
+}
+
+.login-title {
+  font-size: 32px;
+  font-weight: 500;
+  color: #333;
+  text-align: left;
   margin-bottom: 40px;
   margin-top: 0;
   letter-spacing: -0.5px;
@@ -188,83 +181,54 @@ a {
 .form-group {
   margin-bottom: 24px;
   position: relative;
+  
 }
 
 .form-group label {
   display: block;
-  font-size: 14px;
-  font-weight: 600;
-  color: #374151;
+  font-size: 16px;
+  font-weight: 400;
+  color: #666;
   margin-bottom: 8px;
   transition: color 0.3s ease;
 }
 
 .form-group input {
   width: 100%;
-  padding: 16px 20px;
-  border: 2px solid #e5e7eb;
-  border-radius: 12px;
+
+  padding: 16px;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
   font-size: 16px;
   background-color: #fff;
-  color: #111827;
+  color: #333;
   box-sizing: border-box;
-  transition: all 0.3s ease;
-  font-weight: 500;
+  transition: border-color 0.2s ease;
+
 }
 
 .form-group input:focus {
   outline: none;
-  border-color: #667eea;
-  box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1);
-  transform: translateY(-1px);
-}
-
-.form-group input:hover {
-  border-color: #d1d5db;
+  border-color: #d2691e;
 }
 
 .form-group input::placeholder {
-  color: #9ca3af;
-  font-weight: 400;
-}
-
-.form-group:focus-within label {
-  color: #667eea;
+  color: #bbb;
 }
 
 .register-button {
   width: 100%;
-  padding: 18px 24px;
-  background: linear-gradient(135deg, #409BFF 0%, #409BFF 100%);
+  padding: 16px;
+  background-color: #d2691e;
   color: #fff;
   border: none;
   border-radius: 12px;
   font-size: 16px;
-  font-weight: 700;
+  font-weight: 500;
   cursor: pointer;
-  transition: all 0.3s ease;
-  margin-top: 20px;
+  transition: background-color 0.2s ease;
+  margin-top: 16px;
   margin-bottom: 24px;
-  position: relative;
-  overflow: hidden;
-  letter-spacing: 0.5px;
-  text-transform: uppercase;
-  font-size: 14px;
-}
-
-.register-button::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-  transition: left 0.5s;
-}
-
-.register-button:hover::before {
-  left: 100%;
 }
 
 .register-button:hover {
@@ -277,11 +241,98 @@ a {
   box-shadow: 0 5px 15px rgba(102, 126, 234, 0.2);
 }
 
-.login-link {
+.register-button:disabled {
+  background-color: #bbb;
+  cursor: not-allowed;
+}
+
+/* Botón de login - nuevo diseño */
+.login-button {
+  width: 100%;
+  padding: 16px;
+  background-color: #d2691e;
+  color: #fff;
+  border: none;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  margin-top: 16px;
+  margin-bottom: 24px;
+}
+
+.login-button:hover {
+  background-color: #b85c1a;
+}
+
+.login-button:active {
+  background-color: #a0520d;
+}
+
+.login-button:disabled {
+  background-color: #bbb;
+  cursor: not-allowed;
+}
+
+.register-redirect-button {
+  width: 100%;
+  padding: 16px;
+  background-color: #f0f0f0;
+  color: #333;
+  border: none;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  margin-bottom: 24px;
+}
+
+.register-redirect-button:hover {
+  background-color: #e0e0e0;
+}
+
+.forgot-password {
   text-align: center;
   color: #666;
   font-size: 14px;
   margin: 0;
+  cursor: pointer;
+}
+
+.forgot-password:hover {
+  color: #d2691e;
+}
+
+.login-link,
+.signup-link {
+  text-align: center;
+  color: #666;
+  font-size: 14px;
+  margin: 0;
+}
+
+.login-link a,
+.signup-link a {
+  color: #d2691e;
+  text-decoration: none;
+}
+
+.login-link a:hover,
+.signup-link a:hover {
+  text-decoration: underline;
+}
+
+.form-error {
+  background-color: #f8d7da;
+  color: #721c24;
+  padding: 10px;
+  border-radius: 6px;
+  margin-bottom: 15px;
+  text-align: center;
+  border: 1px solid #f5c6cb;
+  font-size: 14px;
 }
 
 .login-link-text {
@@ -297,27 +348,221 @@ a {
   transform: scale(1.05);
 }
 
+/* Estilos para la página Home */
+.home-container {
+  min-height: 100vh;
+  background-color: #f5f5f5;
+  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.home-content {
+  background-color: white;
+  min-height: 100vh;
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  position: relative;
+}
+
+.home-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.greeting h1 {
+  font-size: 28px;
+  font-weight: 500;
+  color: #333;
+  margin: 0;
+}
+
+.user-menu {
+  position: relative;
+}
+
+.user-menu-button {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #e0e0e0;
+  border: none;
+  font-size: 18px;
+  font-weight: bold;
+  color: #666;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.user-menu-dropdown {
+  position: absolute;
+  top: 45px;
+  right: 0;
+  background-color: white;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  min-width: 150px;
+  z-index: 1000;
+}
+
+.menu-item {
+  display: block;
+  width: 100%;
+  padding: 12px 16px;
+  text-align: left;
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-size: 14px;
+  color: #333;
+}
+
+.menu-item:hover {
+  background-color: #f5f5f5;
+}
+
+.menu-item:first-child {
+  border-radius: 8px 8px 0 0;
+}
+
+.menu-item:last-child {
+  border-radius: 0 0 8px 8px;
+}
+
+.datetime-section {
+  margin-bottom: 40px;
+}
+
+.current-date {
+  font-size: 16px;
+  color: #888;
+  margin: 0 0 5px 0;
+  text-transform: capitalize;
+}
+
+.current-time {
+  font-size: 48px;
+  font-weight: 300;
+  color: #333;
+  margin: 0;
+  line-height: 1;
+}
+
+.reminders-section {
+  margin-bottom: 40px;
+}
+
+.reminders-section h3 {
+  font-size: 18px;
+  font-weight: 500;
+  color: #333;
+  margin: 0 0 20px 0;
+}
+
+.reminders-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.reminder-item {
+  display: flex;
+  align-items: center;
+  background-color: #f8f9fa;
+  padding: 16px;
+  border-radius: 12px;
+  border: 1px solid #e9ecef;
+}
+
+.reminder-icon {
+  color: #d2691e;
+  margin-right: 16px;
+  flex-shrink: 0;
+}
+
+.reminder-content {
+  flex: 1;
+}
+
+.reminder-time {
+  font-size: 16px;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 4px;
+}
+
+.reminder-medication {
+  font-size: 14px;
+  color: #666;
+}
+
+.main-buttons {
+  display: flex;
+  gap: 16px;
+  margin-top: 40px;
+}
+
+.main-button {
+  flex: 1;
+  padding: 20px;
+  border: none;
+  border-radius: 16px;
+  font-size: 16px;
+  font-weight: 500;
+  color: white;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.inventory-button {
+  background-color: #d2691e;
+}
+
+.inventory-button:hover {
+  background-color: #b85c1a;
+}
+
+.reminders-button {
+  background-color: #4A90E2;
+}
+
+.reminders-button:hover {
+  background-color: #357ABD;
+}
+
 /* Responsive design */
 @media (max-width: 480px) {
-  .signup-form {
-    padding: 32px 24px;
+  .home-content {
+    padding: 16px;
+  }
+  
+  .greeting h1 {
+    font-size: 24px;
+  }
+  
+  .current-time {
+    font-size: 40px;
+  }
+  
+  .main-buttons {
+    flex-direction: column;
+  }
+
+  .signup-form,
+  .login-form {
+    padding: 30px 20px;
     margin: 10px;
     border-radius: 20px;
   }
-  
-  .signup-title {
+
+  .signup-title,
+  .login-title {
     font-size: 28px;
-    margin-bottom: 32px;
-  }
-
-  .form-group input {
-    padding: 14px 18px;
-    font-size: 16px; /* Prevents zoom on iOS */
-  }
-
-  .register-button {
-    padding: 16px 20px;
-    font-size: 14px;
   }
 
   .landing-title {

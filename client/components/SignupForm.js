@@ -109,10 +109,7 @@ const SignupForm = () => {
           {loading ? 'Registrando...' : 'Registrarse'}
         </button>
 
-        {error && <p className="form-error">{error}</p>}
-
         <p className="login-link">¿Ya tienes cuenta? <Link href="/login">Inicia sesión</Link></p>
-
       </form>
     </div>
   );

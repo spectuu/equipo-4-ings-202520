@@ -16,3 +16,18 @@ export const register = async (email, username, password) => {
     throw new Error(message);
   }
 };
+
+export const login = async (email, password) => {
+  try {
+    const response = await axios.post(`${API_URL}/login`, { email, password });
+
+    const token = response.data?.data?.token;
+
+    if (!token) throw new Error("Token not found");
+
+    return { token };
+  } catch (err) {
+    const message = err?.response?.data?.message || err.message || "Login failed";
+    throw new Error(message);
+  }
+};
