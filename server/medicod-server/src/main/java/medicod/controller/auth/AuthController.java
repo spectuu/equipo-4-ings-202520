@@ -5,6 +5,7 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import medicod.domain.dto.BasicResponse;
+import medicod.domain.dto.auth.LoginRequest;
 import medicod.domain.dto.auth.RegisterRequest;
 import medicod.domain.service.auth.AuthService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +30,15 @@ public class AuthController {
             @Valid
             RegisterRequest registerRequest) {
         return authService.register(registerRequest);
+    }
+
+    @PostMapping("/login")
+    public ResponseEntity<BasicResponse> login(
+            @RequestBody
+            @io.swagger.v3.oas.annotations.parameters.RequestBody(required = true)
+            @Valid
+            LoginRequest loginRequest) {
+        return authService.login(loginRequest);
     }
 
 }

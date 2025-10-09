@@ -5,12 +5,14 @@ import com.medicod.database.tables.records.MedicodUsersRecord;
 import lombok.extern.slf4j.Slf4j;
 import medicod.domain.dto.BasicResponse;
 import medicod.domain.dto.auth.AuthResponse;
+import medicod.domain.dto.auth.LoginRequest;
 import medicod.domain.dto.auth.RegisterRequest;
 import medicod.domain.repository.account.AccountRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.util.ObjectUtils;
@@ -33,6 +35,46 @@ public class AuthService {
     @Autowired
     private AuthenticationManager authenticationManager;
 
+    public ResponseEntity<BasicResponse> login(LoginRequest loginRequest) {
+
+        MedicodUsersRecord accountByEmail = accountRepository.getAccountByEmail(loginRequest.getEmail());
+
+        if (ObjectUtils.isEmpty(accountByEmail)) {
+
+            return ResponseEntity
+                    .status(HttpStatus.NOT_FOUND)
+                    .body(BasicResponse.builder()
+                            .code(404)
+                            .message("NOT_FOUND")
+                            .display("Account not found")
+                            .build());
+
+        }
+
+        if(!passwordEncoder.matches(loginRequest.getPassword(), accountByEmail.getPasswordHash())) {
+            return ResponseEntity
+                    .status(HttpStatus.UNAUTHORIZED)
+                    .body(BasicResponse.builder()
+                            .code(401)
+                            .message("UNAUTHORIZED")
+                            .display("Invalid credentials")
+                            .build());
+        }
+
+        authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(accountByEmail.getName(), loginRequest.getPassword()));
+
+        return ResponseEntity
+                .status(HttpStatus.ACCEPTED)
+                .body(BasicResponse.builder()
+                        .code(200)
+                        .message("SUCCESS")
+                        .display("Login successful")
+                        .data(AuthResponse.builder()
+                                .token(jwtService.getToken(accountByEmail))
+                                .build())
+                        .build());
+
+    }
 
     public ResponseEntity<BasicResponse> register(RegisterRequest request) {
 
@@ -76,10 +118,10 @@ public class AuthService {
                             .display("The username already exists")
                             .build());
 
-
         }
 
         MedicodUsersRecord record = new MedicodUsersRecord();
+
         record.setName(request.getUsername());
         record.setEmail(request.getEmail());
         record.setPasswordHash(passwordEncoder.encode(request.getPassword()));
