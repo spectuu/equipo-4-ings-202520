@@ -1,0 +1,260 @@
+/* Estilos globales de la aplicación */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  max-width: 100vw;
+  overflow-x: hidden;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: linear-gradient(
+      to bottom,
+      transparent,
+      rgb(var(--background-end-rgb))
+    )
+    rgb(var(--background-start-rgb));
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+@media (prefers-color-scheme: dark) {
+  html {
+    color-scheme: dark;
+  }
+}
+
+/* Variables CSS */
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 0, 0, 0;
+    --background-end-rgb: 0, 0, 0;
+  }
+}
+
+/* Landing page styles */
+.landing-container {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.landing-content {
+  text-align: center;
+  color: white;
+  max-width: 600px;
+}
+
+.landing-title {
+  font-size: 4rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+}
+
+.landing-subtitle {
+  font-size: 1.5rem;
+  margin-bottom: 3rem;
+  opacity: 0.9;
+}
+
+.landing-buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.cta-button {
+  padding: 15px 30px;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+}
+
+.cta-button.primary {
+  background-color: #d2691e;
+  color: white;
+}
+
+.cta-button.primary:hover {
+  background-color: #b85c1a;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(210, 105, 30, 0.4);
+}
+
+.cta-button.secondary {
+  background-color: transparent;
+  color: white;
+  border-color: white;
+}
+
+.cta-button.secondary:hover {
+  background-color: white;
+  color: #667eea;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(255, 255, 255, 0.3);
+}
+
+/* Estilos para el formulario de registro */
+.signup-container {
+  min-height: 100vh;
+  background-color: lightpink;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  font-family: 'Arial', sans-serif;
+}
+
+.signup-form {
+  background-color: pink;
+  border-radius: 12px;
+  padding: 40px;
+  width: 100%;
+  max-width: 400px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+}
+
+.signup-title {
+  font-size: 24px;
+  font-weight: bold;
+  color: #000;
+  text-align: center;
+  margin-bottom: 30px;
+  margin-top: 0;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  font-size: 14px;
+  font-weight: 500;
+  color: #000;
+  margin-bottom: 8px;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 12px 16px;
+  border: 1px solid #d0d0d0;
+  border-radius: 6px;
+  font-size: 14px;
+  background-color: #fff;
+  color: #000;
+  box-sizing: border-box;
+  transition: border-color 0.3s ease;
+}
+
+.form-group input:focus {
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
+}
+
+.form-group input::placeholder {
+  color: #999;
+}
+
+.register-button {
+  width: 100%;
+  padding: 14px;
+  background-color: #d2691e;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: bold;
+  font-style: italic;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
+.register-button:hover {
+  background-color: #b85c1a;
+}
+
+.register-button:active {
+  background-color: #a0520d;
+}
+
+.login-link {
+  text-align: center;
+  color: #666;
+  font-size: 14px;
+  margin: 0;
+}
+
+.login-link-text {
+  color: #007bff;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: underline;
+}
+
+.login-link-text:hover {
+  color: #0056b3;
+  text-shadow: 0 0 8px rgba(0, 123, 255, 0.5);
+  transform: scale(1.05);
+}
+
+/* Responsive design */
+@media (max-width: 480px) {
+  .signup-form {
+    padding: 30px 20px;
+    margin: 10px;
+  }
+  
+  .signup-title {
+    font-size: 20px;
+  }
+
+  .landing-title {
+    font-size: 2.5rem;
+  }
+
+  .landing-subtitle {
+    font-size: 1.2rem;
+  }
+
+  .landing-buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .cta-button {
+    width: 100%;
+    max-width: 250px;
+  }
+}
