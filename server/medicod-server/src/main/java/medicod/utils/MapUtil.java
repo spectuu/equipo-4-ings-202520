@@ -1,7 +1,7 @@
 package medicod.utils;
 
 import lombok.experimental.UtilityClass;
-import medicod.domain.dto.MapResponse;
+import medicod.domain.dto.mapper.MapResponse;
 import org.jooq.Record;
 
 import java.util.HashMap;
