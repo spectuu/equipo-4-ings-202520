@@ -1,4 +1,4 @@
-package medicod.domain.dto;
+package medicod.domain.dto.mapper;
 
 import java.util.Collection;
 import java.util.HashMap;

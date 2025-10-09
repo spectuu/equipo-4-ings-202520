@@ -14,6 +14,8 @@ public interface AccountRepository {
 
     MedicodUsersRecord getAccountByUsername(String username);
 
+    MedicodUsersRecord getAccountByEmailOrUsername(String email, String username);
+
     MedicodUsersRecord getAccountByEmail(String email);
 
     void save(MedicodUsersRecord account);

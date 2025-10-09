@@ -51,6 +51,13 @@ public class AccountRepositoryImpl implements AccountRepository {
     }
 
     @Override
+    public MedicodUsersRecord getAccountByEmailOrUsername(String email, String username) {
+        return context.selectFrom(MEDICOD_USERS)
+                .where(MEDICOD_USERS.EMAIL.eq(email).or(MEDICOD_USERS.NAME.eq(username)))
+                .fetchOne();
+    }
+
+    @Override
     public MedicodUsersRecord getAccountByEmail(String email) {
         return context.select()
                 .from(MEDICOD_USERS)
