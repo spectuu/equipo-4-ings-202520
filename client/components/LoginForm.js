@@ -6,7 +6,7 @@ import { setToken } from '../api/token';
 
 const LoginForm = () => {
   const [formData, setFormData] = useState({
-    email: '',
+    username: '',
     password: ''
   });
 
@@ -26,12 +26,12 @@ const LoginForm = () => {
     e.preventDefault();
     setError(null);
 
-    const { email, password } = formData;
+    const { username, password } = formData;
 
     try {
       setLoading(true);
-      const result = await login(email, password);
-      // guardar token y redirigir al home
+      // Para este demo, usaremos username como email
+      const result = await login(username, password);
       setToken(result.token);
       router.push('/');
     } catch (err) {
@@ -44,16 +44,16 @@ const LoginForm = () => {
   return (
     <div className="login-container">
       <form className="login-form" onSubmit={handleSubmit}>
-        <h2 className="login-title">Iniciar Sesión</h2>
+        <h2 className="login-title">Inicia sesión</h2>
         
         <div className="form-group">
-          <label htmlFor="email">Email</label>
+          <label htmlFor="username">Nombre de usuario</label>
           <input
-            type="email"
-            id="email"
-            name="email"
-            placeholder="tu@email.com"
-            value={formData.email}
+            type="text"
+            id="username"
+            name="username"
+            placeholder="tu_usuario"
+            value={formData.username}
             onChange={handleInputChange}
             required
           />
@@ -73,12 +73,20 @@ const LoginForm = () => {
         </div>
 
         <button type="submit" className="login-button" disabled={loading}>
-          {loading ? 'Iniciando sesión...' : 'Iniciar Sesión'}
+          {loading ? 'Iniciando sesión...' : 'Iniciar sesión'}
+        </button>
+
+        <button 
+          type="button" 
+          className="register-redirect-button"
+          onClick={() => router.push('/signup')}
+        >
+          Registrarse
         </button>
 
         {error && <p className="form-error">{error}</p>}
 
-        <p className="signup-link">¿No tienes cuenta? <Link href="/signup">Regístrate</Link></p>
+        <p className="forgot-password">¿Olvidaste tu contraseña?</p>
       </form>
     </div>
   );
