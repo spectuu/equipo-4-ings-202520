@@ -11,9 +11,8 @@ const UserMenu = () => {
   };
 
   const handleLogout = () => {
-    // removeToken();
-    // router.push('/login');
-    console.log('Cerrar sesión (no implementado)');
+    removeToken();
+    router.push('/login');
     setIsOpen(false);
   };
 
@@ -47,13 +46,11 @@ const Home = () => {
   const router = useRouter();
 
   useEffect(() => {
-    // Verificar si está autenticado
     if (!isAuthenticated()) {
       router.push('/login');
       return;
     }
 
-    // Actualizar fecha y hora
     const updateDateTime = () => {
       const now = new Date();
       const timeString = now.toLocaleTimeString('es-ES', { 
@@ -72,7 +69,7 @@ const Home = () => {
     };
 
     updateDateTime();
-    const interval = setInterval(updateDateTime, 60000); // Actualizar cada minuto
+    const interval = setInterval(updateDateTime, 60000);
 
     return () => clearInterval(interval);
   }, [router]);
