@@ -125,7 +125,10 @@ const Home = () => {
 
         {/* Botones principales */}
         <div className="main-buttons">
-          <button className="main-button inventory-button">
+          <button 
+            className="main-button inventory-button"
+            onClick={() => router.push('/inventory')}
+          >
             Inventario
           </button>
           <button className="main-button reminders-button">

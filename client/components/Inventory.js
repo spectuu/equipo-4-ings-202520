@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { isAuthenticated } from '../api/token';
 import { useRouter } from 'next/router';
+import InventoryApi from '../api/inventoryApi';
 
 const Inventory = () => {
   const router = useRouter();
@@ -12,44 +13,71 @@ const Inventory = () => {
     }
   }, [router]);
 
-  // Datos mock de medicamentos
-  const mockMedications = [
-    {
-      id: 1,
-      name: 'Paracetamol 500mg',
-      description: 'Analgésico y antipirético para el alivio del dolor y la fiebre',
-      expirationDate: '2025-12-15',
-      dateAdded: '2024-09-15'
-    },
-    {
-      id: 2,
-      name: 'Vitamina C',
-      description: 'Suplemento vitamínico para fortalecer el sistema inmunológico',
-      expirationDate: '2026-03-20',
-      dateAdded: '2024-08-10'
-    },
-    {
-      id: 3,
-      name: 'Ibuprofeno 400mg',
-      description: 'Antiinflamatorio no esteroideo para dolor y inflamación',
-      expirationDate: '2025-11-30',
-      dateAdded: '2024-07-22'
-    },
-    {
-      id: 4,
-      name: 'Omeprazol 20mg',
-      description: 'Inhibidor de la bomba de protones para acidez estomacal',
-      expirationDate: '2025-10-18',
-      dateAdded: '2024-06-05'
-    },
-    {
-      id: 5,
-      name: 'Acetaminofén Infantil',
-      description: 'Analgésico y antipirético formulado especialmente para niños',
-      expirationDate: '2025-08-25',
-      dateAdded: '2024-09-01'
+  const [items, setItems] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState('');
+  const [success, setSuccess] = useState('');
+  const [showAdd, setShowAdd] = useState(false);
+  const [addForm, setAddForm] = useState({
+    medicationName: '',
+    quantity: '',
+    unit: '',
+    lotCode: '',
+    expires: '',
+    medicationDescription: ''
+  });
+  const [saving, setSaving] = useState(false);
+
+  useEffect(() => {
+    if (!isAuthenticated()) return;
+    let mounted = true;
+    const load = async () => {
+      try {
+        const data = await InventoryApi.list();
+        if (mounted) setItems(Array.isArray(data) ? data : []);
+      } catch (err) {
+        if (mounted) setError(err?.message || 'Error cargando inventario');
+      } finally {
+        if (mounted) setLoading(false);
+      }
+    };
+    load();
+    return () => { mounted = false; };
+  }, []);
+
+  const handleAddChange = (e) => {
+    const { name, value } = e.target;
+    setAddForm((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleAddSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      setSaving(true);
+      const result = await InventoryApi.add({
+        medicationName: addForm.medicationName.trim(),
+        quantity: Number(addForm.quantity || 0),
+        unit: addForm.unit.trim() || null,
+        lotCode: addForm.lotCode.trim() || null,
+        expires: addForm.expires || null,
+        medicationDescription: addForm.medicationDescription.trim() || null
+      });
+      // recargar lista
+      setLoading(true);
+      const data = await InventoryApi.list();
+      setItems(Array.isArray(data) ? data : []);
+      setShowAdd(false);
+      setAddForm({ medicationName: '', quantity: '', unit: '', lotCode: '', expires: '', medicationDescription: '' });
+      setSuccess(result?.display || 'Medicamento guardado correctamente');
+      setTimeout(() => setSuccess(''), 3000);
+    } catch (err) {
+      setError(err?.message || 'No se pudo agregar');
+      setTimeout(() => setError(''), 4000);
+    } finally {
+      setLoading(false);
+      setSaving(false);
     }
-  ];
+  };
 
   const formatDate = (dateString) => {
     const date = new Date(dateString);
@@ -86,6 +114,11 @@ const Inventory = () => {
             ← Volver
           </button>
           <h1>Inventario de Medicamentos</h1>
+          <div style={{ marginLeft: 'auto' }}>
+            <button className="main-button inventory-button" onClick={() => setShowAdd(true)}>
+              Añadir
+            </button>
+          </div>
         </div>
 
         {/* Tabla de medicamentos */}
@@ -100,7 +133,7 @@ const Inventory = () => {
               </tr>
             </thead>
             <tbody>
-              {mockMedications.map((medication) => (
+              {items.map((medication) => (
                 <tr 
                   key={medication.id}
                   className={`
@@ -129,22 +162,100 @@ const Inventory = () => {
         {/* Resumen */}
         <div className="inventory-summary">
           <div className="summary-item">
-            <span className="summary-number">{mockMedications.length}</span>
+            <span className="summary-number">{items.length}</span>
             <span className="summary-label">Total de medicamentos</span>
           </div>
           <div className="summary-item warning">
             <span className="summary-number">
-              {mockMedications.filter(m => isExpiringSoon(m.expirationDate) && !isExpired(m.expirationDate)).length}
+              {items.filter(m => isExpiringSoon(m.expirationDate) && !isExpired(m.expirationDate)).length}
             </span>
             <span className="summary-label">Por vencer (30 días)</span>
           </div>
           <div className="summary-item danger">
             <span className="summary-number">
-              {mockMedications.filter(m => isExpired(m.expirationDate)).length}
+              {items.filter(m => isExpired(m.expirationDate)).length}
             </span>
             <span className="summary-label">Vencidos</span>
           </div>
         </div>
+        {error && <p className="error-text">{error}</p>}
+        {success && <p className="success-text">{success}</p>}
+
+        {showAdd && (
+          <div className="modal-overlay">
+            <div className="modal-content">
+              <h2 style={{marginBottom: 16}}>Registrar medicamento</h2>
+              <form onSubmit={handleAddSubmit} className="medication-form-grid">
+                <div className="form-group">
+                  <label>Nombre</label>
+                  <input
+                    name="medicationName"
+                    value={addForm.medicationName}
+                    onChange={handleAddChange}
+                    placeholder="Ej: Ibuprofeno 400mg"
+                    maxLength={120}
+                    required
+                  />
+                </div>
+                <div className="form-group">
+                  <label>Cantidad</label>
+                  <input
+                    name="quantity"
+                    type="number"
+                    min="0"
+                    value={addForm.quantity}
+                    onChange={handleAddChange}
+                    placeholder="Ej: 24"
+                    required
+                  />
+                </div>
+                <div className="form-group">
+                  <label>Unidad</label>
+                  <input
+                    name="unit"
+                    value={addForm.unit}
+                    onChange={handleAddChange}
+                    placeholder="Tabletas / ml / cápsulas"
+                    maxLength={16}
+                  />
+                </div>
+                <div className="form-group">
+                  <label>Lote</label>
+                  <input
+                    name="lotCode"
+                    value={addForm.lotCode}
+                    onChange={handleAddChange}
+                    placeholder="Código de lote"
+                    maxLength={64}
+                  />
+                </div>
+                <div className="form-group">
+                  <label>Fecha de expiración</label>
+                  <input
+                    type="date"
+                    name="expires"
+                    value={addForm.expires}
+                    onChange={handleAddChange}
+                  />
+                </div>
+                <div className="form-group" style={{gridColumn: '1 / -1'}}>
+                  <label>Descripción</label>
+                  <input
+                    name="medicationDescription"
+                    value={addForm.medicationDescription}
+                    onChange={handleAddChange}
+                    placeholder="Opcional"
+                    maxLength={2000}
+                  />
+                </div>
+                <div className="form-actions" style={{gridColumn: '1 / -1'}}>
+                  <button type="button" className="btn-secondary" onClick={() => setShowAdd(false)} disabled={saving}>Cancelar</button>
+                  <button type="submit" className="btn-primary" disabled={saving}>{saving ? 'Guardando...' : 'Guardar'}</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );
