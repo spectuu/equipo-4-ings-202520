@@ -227,6 +227,7 @@ const Inventory = () => {
                 <th>Lote</th>
                 <th>Fecha de Expiración</th>
                 <th>Fecha de Adición</th>
+                <th>Acciones</th>
               </tr>
             </thead>
             <tbody>
