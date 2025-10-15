@@ -27,3 +27,4 @@ MEDICOD busca facilitar esta gestión mediante una app móvil intuitiva y segura
 - [Requisitos no funcionales](analysis/requirements-nfn.md)
 - [MVP](analysis/mvp.md)
 - [Generalidades del diseño](design/index.md)
+- [Sprint](sprint.md)
