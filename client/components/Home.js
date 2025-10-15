@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { isAuthenticated, removeToken } from '../api/token';
+import { isAuthenticated, removeToken, getUserFromToken } from '../api/token';
 import { useRouter } from 'next/router';
 
 const UserMenu = () => {
@@ -11,9 +11,8 @@ const UserMenu = () => {
   };
 
   const handleLogout = () => {
-    // removeToken();
-    // router.push('/login');
-    console.log('Cerrar sesión (no implementado)');
+    removeToken();
+    router.push('/login');
     setIsOpen(false);
   };
 
@@ -44,16 +43,15 @@ const UserMenu = () => {
 const Home = () => {
   const [currentTime, setCurrentTime] = useState('');
   const [currentDate, setCurrentDate] = useState('');
+  const [displayName, setDisplayName] = useState('Usuario');
   const router = useRouter();
 
   useEffect(() => {
-    // Verificar si está autenticado
     if (!isAuthenticated()) {
       router.push('/login');
       return;
     }
 
-    // Actualizar fecha y hora
     const updateDateTime = () => {
       const now = new Date();
       const timeString = now.toLocaleTimeString('es-ES', { 
@@ -72,7 +70,10 @@ const Home = () => {
     };
 
     updateDateTime();
-    const interval = setInterval(updateDateTime, 60000); // Actualizar cada minuto
+    const user = getUserFromToken();
+    const name = user?.username || user?.name || user?.sub || 'Usuario';
+    setDisplayName(name);
+    const interval = setInterval(updateDateTime, 60000);
 
     return () => clearInterval(interval);
   }, [router]);
@@ -94,7 +95,7 @@ const Home = () => {
         {/* Header con saludo y menú */}
         <div className="home-header">
           <div className="greeting">
-            <h1>Hola, Usuario 👋</h1>
+            <h1>Hola, {displayName} 👋</h1>
           </div>
           <UserMenu />
         </div>
@@ -128,7 +129,10 @@ const Home = () => {
 
         {/* Botones principales */}
         <div className="main-buttons">
-          <button className="main-button inventory-button">
+          <button 
+            className="main-button inventory-button"
+            onClick={() => router.push('/inventory')}
+          >
             Inventario
           </button>
           <button className="main-button reminders-button">

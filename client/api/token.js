@@ -20,4 +20,17 @@ export const removeToken = () => {
 
 export const isAuthenticated = () => {
   return !!getToken();
-};;
+};
+
+export const getUserFromToken = () => {
+  const token = getToken();
+  if (!token) return null;
+  try {
+    const payload = token.split('.')[1];
+    const normalized = payload.replace(/-/g, '+').replace(/_/g, '/');
+    const json = JSON.parse(atob(normalized));
+    return json || null;
+  } catch (e) {
+    return null;
+  }
+};

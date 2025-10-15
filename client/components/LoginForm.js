@@ -30,7 +30,6 @@ const LoginForm = () => {
 
     try {
       setLoading(true);
-      // Para este demo, usaremos username como email
       const result = await login(username, password);
       setToken(result.token);
       router.push('/');
