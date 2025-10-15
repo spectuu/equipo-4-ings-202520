@@ -64,6 +64,15 @@ class InventoryApi {
     }
   }
 
+  static async update(inventoryId, payload) {
+    try {
+      const response = await axios.put(`${BASE_URL}/${inventoryId}`, payload);
+      return extractDataOrThrow(response);
+    } catch (err) {
+      throw new Error(toReadableError(err, "Could not update inventory item"));
+    }
+  }
+
 }
 
 export default InventoryApi;

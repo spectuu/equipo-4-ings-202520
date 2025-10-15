@@ -18,6 +18,7 @@ const Inventory = () => {
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
   const [query, setQuery] = useState('');
+  const [searching, setSearching] = useState(false);
   const [showAdd, setShowAdd] = useState(false);
   const [addForm, setAddForm] = useState({
     medicationName: '',
@@ -28,6 +29,8 @@ const Inventory = () => {
     medicationDescription: ''
   });
   const [saving, setSaving] = useState(false);
+  const [editingId, setEditingId] = useState(null);
+  const [editForm, setEditForm] = useState({ quantity: '', unit: '', lotCode: '', expires: '' });
 
   useEffect(() => {
     if (!isAuthenticated()) return;
@@ -45,6 +48,29 @@ const Inventory = () => {
     load();
     return () => { mounted = false; };
   }, []);
+
+  // Debounced search when query changes
+  useEffect(() => {
+    let active = true;
+    const handler = setTimeout(async () => {
+      if (!active) return;
+      setSearching(true);
+      try {
+        if (query.trim().length === 0) {
+          const data = await InventoryApi.mine();
+          if (active) setItems(Array.isArray(data) ? data : []);
+        } else {
+          const data = await InventoryApi.search(query.trim());
+          if (active) setItems(Array.isArray(data) ? data : []);
+        }
+      } catch (err) {
+        if (active) setError(err?.message || 'Error en la búsqueda');
+      } finally {
+        if (active) setSearching(false);
+      }
+    }, 350);
+    return () => { active = false; clearTimeout(handler); };
+  }, [query]);
 
   const handleAddChange = (e) => {
     const { name, value } = e.target;
@@ -76,6 +102,45 @@ const Inventory = () => {
       setTimeout(() => setError(''), 4000);
     } finally {
       setLoading(false);
+      setSaving(false);
+    }
+  };
+
+  const openEdit = (item) => {
+    setEditingId(item.id);
+    setEditForm({
+      quantity: String(item.quantity ?? ''),
+      unit: item.unit || '',
+      lotCode: item.lotCode || '',
+      expires: (item.expires ? String(item.expires).slice(0,10) : '')
+    });
+  };
+
+  const handleEditChange = (e) => {
+    const { name, value } = e.target;
+    setEditForm((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleEditSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      setSaving(true);
+      const payload = {
+        quantity: editForm.quantity === '' ? null : Number(editForm.quantity),
+        unit: editForm.unit || null,
+        lotCode: editForm.lotCode || null,
+        expires: editForm.expires || null
+      };
+      await InventoryApi.update(editingId, payload);
+      const data = await InventoryApi.mine();
+      setItems(Array.isArray(data) ? data : []);
+      setEditingId(null);
+      setSuccess('Medicamento actualizado');
+      setTimeout(() => setSuccess(''), 3000);
+    } catch (err) {
+      setError(err?.message || 'No se pudo actualizar');
+      setTimeout(() => setError(''), 4000);
+    } finally {
       setSaving(false);
     }
   };
@@ -126,31 +191,18 @@ const Inventory = () => {
           </button>
           <h1>Inventario de Medicamentos</h1>
           <div style={{ marginLeft: 'auto' }}>
-            <input
-              className="search-input"
-              placeholder="Buscar por nombre..."
-              value={query}
-              onChange={(e) => setQuery(e.target.value)}
-              onKeyDown={async (e) => {
-                if (e.key === 'Enter') {
-                  setLoading(true);
-                  try {
-                    if (query.trim().length === 0) {
-                      const data = await InventoryApi.mine();
-                      setItems(Array.isArray(data) ? data : []);
-                    } else {
-                      const data = await InventoryApi.search(query.trim());
-                      setItems(Array.isArray(data) ? data : []);
-                    }
-                  } catch (err) {
-                    setError(err?.message || 'Error en la búsqueda');
-                  } finally {
-                    setLoading(false);
-                  }
-                }
-              }}
-              style={{ marginRight: 12 }}
-            />
+            <div className="search-container">
+              <span className="search-icon" aria-hidden>🔎</span>
+              <input
+                className="search-input"
+                placeholder="Buscar por nombre..."
+                value={query}
+                onChange={(e) => setQuery(e.target.value)}
+              />
+              {query && (
+                <button className="clear-btn" onClick={() => setQuery('')} type="button" aria-label="Limpiar">×</button>
+              )}
+            </div>
             <button className="main-button inventory-button" onClick={() => setShowAdd(true)}>
               Añadir
             </button>
@@ -178,6 +230,7 @@ const Inventory = () => {
                   className={`
                     ${isExpired(getExpires(medication)) ? 'expired' : ''}
                     ${isExpiringSoon(getExpires(medication)) ? 'expiring-soon' : ''}
+                    ${isLowStock(medication) ? 'low-stock' : ''}
                   `}
                 >
                   <td className="medication-name">
@@ -188,6 +241,9 @@ const Inventory = () => {
                     {isExpiringSoon(getExpires(medication)) && !isExpired(getExpires(medication)) && (
                       <span className="status-badge warning-badge">Por vencer</span>
                     )}
+                    {isLowStock(medication) && (
+                      <span className="status-badge low-stock-badge">Pocas unidades</span>
+                    )}
                   </td>
                   <td className="medication-description">{getDescription(medication)}</td>
                   <td className="quantity-cell">{medication.quantity}</td>
@@ -195,6 +251,11 @@ const Inventory = () => {
                   <td className="lot-cell">{medication.lotCode}</td>
                   <td className="expiration-date">{formatDate(getExpires(medication))}</td>
                   <td className="date-added">{formatDate(getCreatedAt(medication))}</td>
+                  <td>
+                    <button className="edit-button" onClick={() => openEdit(medication)}>
+                      ✏️ Editar
+                    </button>
+                  </td>
                 </tr>
               ))}
             </tbody>
@@ -221,6 +282,12 @@ const Inventory = () => {
               {items.filter(m => isExpired(getExpires(m))).length}
             </span>
             <span className="summary-label">Vencidos</span>
+          </div>
+          <div className="summary-item" style={{ borderLeft: '4px solid #0891b2' }}>
+            <span className="summary-number">
+              {items.filter(isLowStock).length}
+            </span>
+            <span className="summary-label">Pocas unidades (≤5)</span>
           </div>
         </div>
         {error && <p className="error-text">{error}</p>}
@@ -295,6 +362,58 @@ const Inventory = () => {
                 </div>
                 <div className="form-actions" style={{gridColumn: '1 / -1'}}>
                   <button type="button" className="btn-secondary" onClick={() => setShowAdd(false)} disabled={saving}>Cancelar</button>
+                  <button type="submit" className="btn-primary" disabled={saving}>{saving ? 'Guardando...' : 'Guardar'}</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        )}
+
+        {editingId !== null && (
+          <div className="modal-overlay">
+            <div className="modal-content">
+              <h2 style={{marginBottom: 16}}>Editar medicamento</h2>
+              <form onSubmit={handleEditSubmit} className="medication-form-grid">
+                <div className="form-group">
+                  <label>Cantidad</label>
+                  <input
+                    name="quantity"
+                    type="number"
+                    min="0"
+                    value={editForm.quantity}
+                    onChange={handleEditChange}
+                    required
+                  />
+                </div>
+                <div className="form-group">
+                  <label>Unidad</label>
+                  <input
+                    name="unit"
+                    value={editForm.unit}
+                    onChange={handleEditChange}
+                    maxLength={16}
+                  />
+                </div>
+                <div className="form-group">
+                  <label>Lote</label>
+                  <input
+                    name="lotCode"
+                    value={editForm.lotCode}
+                    onChange={handleEditChange}
+                    maxLength={64}
+                  />
+                </div>
+                <div className="form-group">
+                  <label>Fecha de expiración</label>
+                  <input
+                    type="date"
+                    name="expires"
+                    value={editForm.expires}
+                    onChange={handleEditChange}
+                  />
+                </div>
+                <div className="form-actions" style={{gridColumn: '1 / -1'}}>
+                  <button type="button" className="btn-secondary" onClick={() => setEditingId(null)} disabled={saving}>Cancelar</button>
                   <button type="submit" className="btn-primary" disabled={saving}>{saving ? 'Guardando...' : 'Guardar'}</button>
                 </div>
               </form>
