@@ -14,9 +14,11 @@ public class InventoryItemResponse {
     private long id;
     private long medicationId;
     private String medicationName;
+    private String medicationDescription;
     private int quantity;
     private String unit;
     private String lotCode;
     private LocalDate expires;
+    private LocalDateTime createdAt;
 
 }
