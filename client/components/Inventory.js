@@ -173,6 +173,12 @@ const Inventory = () => {
     return expDate < today;
   };
 
+  const LOW_STOCK_THRESHOLD = 5;
+  const isLowStock = (item) => {
+    const qty = Number(item?.quantity ?? NaN);
+        return !Number.isNaN(qty) && qty <= LOW_STOCK_THRESHOLD;
+    };
+
   const getName = (item) => item.medicationName || item.name || item.medName || '';
   const getDescription = (item) => item.medicationDescription || item.description || '';
   const getExpires = (item) => item.expires || item.expirationDate || item.expiryDate || null;

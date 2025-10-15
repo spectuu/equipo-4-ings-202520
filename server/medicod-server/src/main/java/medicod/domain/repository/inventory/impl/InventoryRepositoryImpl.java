@@ -72,13 +72,20 @@ public class InventoryRepositoryImpl implements InventoryRepository {
 
     @Override
     public MedicodInventoryRecord update(MedicodInventoryRecord medicine) {
-        return context.update(MEDICOD_INVENTORY)
+        int rows = context.update(MEDICOD_INVENTORY)
                 .set(MEDICOD_INVENTORY.QUANTITY, medicine.getQuantity())
                 .set(MEDICOD_INVENTORY.UNIT, medicine.getUnit())
                 .set(MEDICOD_INVENTORY.LOT_CODE, medicine.getLotCode())
                 .set(MEDICOD_INVENTORY.EXPIRES, medicine.getExpires())
                 .where(MEDICOD_INVENTORY.ID.eq(medicine.getId()))
-                .returning()
+                .execute();
+
+        if (rows == 0) {
+            return null;
+        }
+
+        return context.selectFrom(MEDICOD_INVENTORY)
+                .where(MEDICOD_INVENTORY.ID.eq(medicine.getId()))
                 .fetchOneInto(MedicodInventoryRecord.class);
     }
 
