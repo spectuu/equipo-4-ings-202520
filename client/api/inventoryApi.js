@@ -32,6 +32,15 @@ class InventoryApi {
     }
   }
 
+  static async mine() {
+    try {
+      const response = await axios.get(`${BASE_URL}/mine`);
+      return extractDataOrThrow(response);
+    } catch (err) {
+      throw new Error(toReadableError(err, "Could not fetch user inventory"));
+    }
+  }
+
   static async add(payload) {
     try {
       const response = await axios.post(`${BASE_URL}/add`, payload);

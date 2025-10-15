@@ -633,6 +633,12 @@ a {
   line-height: 1.4;
 }
 
+.quantity-cell,
+.unit-cell,
+.lot-cell {
+  color: #333;
+}
+
 .expiration-date,
 .date-added {
   font-family: 'SF Mono', Monaco, monospace;
@@ -723,6 +729,11 @@ a {
   border: 1px solid #fecaca;
   padding: 10px 12px;
   border-radius: 8px;
+}
+
+.empty-state {
+  margin: 16px 0;
+  color: #666;
 }
 
 /* Modal base */

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { isAuthenticated, removeToken } from '../api/token';
+import { isAuthenticated, removeToken, getUserFromToken } from '../api/token';
 import { useRouter } from 'next/router';
 
 const UserMenu = () => {
@@ -43,6 +43,7 @@ const UserMenu = () => {
 const Home = () => {
   const [currentTime, setCurrentTime] = useState('');
   const [currentDate, setCurrentDate] = useState('');
+  const [displayName, setDisplayName] = useState('Usuario');
   const router = useRouter();
 
   useEffect(() => {
@@ -69,6 +70,9 @@ const Home = () => {
     };
 
     updateDateTime();
+    const user = getUserFromToken();
+    const name = user?.username || user?.name || user?.sub || 'Usuario';
+    setDisplayName(name);
     const interval = setInterval(updateDateTime, 60000);
 
     return () => clearInterval(interval);
@@ -91,7 +95,7 @@ const Home = () => {
         {/* Header con saludo y menú */}
         <div className="home-header">
           <div className="greeting">
-            <h1>Hola, Usuario 👋</h1>
+            <h1>Hola, {displayName} 👋</h1>
           </div>
           <UserMenu />
         </div>
