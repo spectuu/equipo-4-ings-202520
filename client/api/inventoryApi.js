@@ -55,6 +55,15 @@ class InventoryApi {
     }
   }
 
+  static async search(name) {
+    try {
+      const response = await axios.get(`${BASE_URL}/search`, { params: { name } });
+      return extractDataOrThrow(response);
+    } catch (err) {
+      throw new Error(toReadableError(err, "Could not search inventory"));
+    }
+  }
+
 }
 
 export default InventoryApi;

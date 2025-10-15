@@ -17,6 +17,7 @@ const Inventory = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
+  const [query, setQuery] = useState('');
   const [showAdd, setShowAdd] = useState(false);
   const [addForm, setAddForm] = useState({
     medicationName: '',
@@ -125,6 +126,31 @@ const Inventory = () => {
           </button>
           <h1>Inventario de Medicamentos</h1>
           <div style={{ marginLeft: 'auto' }}>
+            <input
+              className="search-input"
+              placeholder="Buscar por nombre..."
+              value={query}
+              onChange={(e) => setQuery(e.target.value)}
+              onKeyDown={async (e) => {
+                if (e.key === 'Enter') {
+                  setLoading(true);
+                  try {
+                    if (query.trim().length === 0) {
+                      const data = await InventoryApi.mine();
+                      setItems(Array.isArray(data) ? data : []);
+                    } else {
+                      const data = await InventoryApi.search(query.trim());
+                      setItems(Array.isArray(data) ? data : []);
+                    }
+                  } catch (err) {
+                    setError(err?.message || 'Error en la búsqueda');
+                  } finally {
+                    setLoading(false);
+                  }
+                }
+              }}
+              style={{ marginRight: 12 }}
+            />
             <button className="main-button inventory-button" onClick={() => setShowAdd(true)}>
               Añadir
             </button>
