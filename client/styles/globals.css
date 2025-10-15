@@ -574,6 +574,13 @@ a {
   border-color: #bbb;
 }
 
+.search-input {
+  padding: 10px 12px;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  margin-right: 12px;
+}
+
 .inventory-header h1 {
   font-size: 28px;
   font-weight: 500;
@@ -631,6 +638,12 @@ a {
   color: #666;
   max-width: 300px;
   line-height: 1.4;
+}
+
+.quantity-cell,
+.unit-cell,
+.lot-cell {
+  color: #333;
 }
 
 .expiration-date,
@@ -723,6 +736,11 @@ a {
   border: 1px solid #fecaca;
   padding: 10px 12px;
   border-radius: 8px;
+}
+
+.empty-state {
+  margin: 16px 0;
+  color: #666;
 }
 
 /* Modal base */

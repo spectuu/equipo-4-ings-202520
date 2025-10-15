@@ -17,6 +17,7 @@ const Inventory = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
+  const [query, setQuery] = useState('');
   const [showAdd, setShowAdd] = useState(false);
   const [addForm, setAddForm] = useState({
     medicationName: '',
@@ -33,7 +34,7 @@ const Inventory = () => {
     let mounted = true;
     const load = async () => {
       try {
-        const data = await InventoryApi.list();
+        const data = await InventoryApi.mine();
         if (mounted) setItems(Array.isArray(data) ? data : []);
       } catch (err) {
         if (mounted) setError(err?.message || 'Error cargando inventario');
@@ -64,7 +65,7 @@ const Inventory = () => {
       });
       // recargar lista
       setLoading(true);
-      const data = await InventoryApi.list();
+      const data = await InventoryApi.mine();
       setItems(Array.isArray(data) ? data : []);
       setShowAdd(false);
       setAddForm({ medicationName: '', quantity: '', unit: '', lotCode: '', expires: '', medicationDescription: '' });
@@ -79,18 +80,22 @@ const Inventory = () => {
     }
   };
 
-  const formatDate = (dateString) => {
-    const date = new Date(dateString);
-    return date.toLocaleDateString('es-ES', {
-      day: '2-digit',
-      month: '2-digit',
-      year: 'numeric'
-    });
+  const toDateOrNull = (value) => {
+    if (!value) return null;
+    const d = new Date(value);
+    return isNaN(d.getTime()) ? null : d;
+  };
+
+  const formatDate = (value) => {
+    const date = toDateOrNull(value);
+    if (!date) return '-';
+    return date.toLocaleDateString('es-ES', { day: '2-digit', month: '2-digit', year: 'numeric' });
   };
 
   const isExpiringSoon = (expirationDate) => {
     const today = new Date();
-    const expDate = new Date(expirationDate);
+    const expDate = toDateOrNull(expirationDate);
+    if (!expDate) return false;
     const diffTime = expDate - today;
     const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
     return diffDays <= 30 && diffDays >= 0;
@@ -98,9 +103,15 @@ const Inventory = () => {
 
   const isExpired = (expirationDate) => {
     const today = new Date();
-    const expDate = new Date(expirationDate);
+    const expDate = toDateOrNull(expirationDate);
+    if (!expDate) return false;
     return expDate < today;
   };
+
+  const getName = (item) => item.medicationName || item.name || item.medName || '';
+  const getDescription = (item) => item.medicationDescription || item.description || '';
+  const getExpires = (item) => item.expires || item.expirationDate || item.expiryDate || null;
+  const getCreatedAt = (item) => item.createdAt || item.dateAdded || item.addedAt || null;
 
   return (
     <div className="inventory-container">
@@ -115,6 +126,31 @@ const Inventory = () => {
           </button>
           <h1>Inventario de Medicamentos</h1>
           <div style={{ marginLeft: 'auto' }}>
+            <input
+              className="search-input"
+              placeholder="Buscar por nombre..."
+              value={query}
+              onChange={(e) => setQuery(e.target.value)}
+              onKeyDown={async (e) => {
+                if (e.key === 'Enter') {
+                  setLoading(true);
+                  try {
+                    if (query.trim().length === 0) {
+                      const data = await InventoryApi.mine();
+                      setItems(Array.isArray(data) ? data : []);
+                    } else {
+                      const data = await InventoryApi.search(query.trim());
+                      setItems(Array.isArray(data) ? data : []);
+                    }
+                  } catch (err) {
+                    setError(err?.message || 'Error en la búsqueda');
+                  } finally {
+                    setLoading(false);
+                  }
+                }
+              }}
+              style={{ marginRight: 12 }}
+            />
             <button className="main-button inventory-button" onClick={() => setShowAdd(true)}>
               Añadir
             </button>
@@ -128,6 +164,9 @@ const Inventory = () => {
               <tr>
                 <th>Medicamento</th>
                 <th>Descripción</th>
+                <th>Cantidad</th>
+                <th>Unidad</th>
+                <th>Lote</th>
                 <th>Fecha de Expiración</th>
                 <th>Fecha de Adición</th>
               </tr>
@@ -137,27 +176,33 @@ const Inventory = () => {
                 <tr 
                   key={medication.id}
                   className={`
-                    ${isExpired(medication.expirationDate) ? 'expired' : ''}
-                    ${isExpiringSoon(medication.expirationDate) ? 'expiring-soon' : ''}
+                    ${isExpired(getExpires(medication)) ? 'expired' : ''}
+                    ${isExpiringSoon(getExpires(medication)) ? 'expiring-soon' : ''}
                   `}
                 >
                   <td className="medication-name">
-                    {medication.name}
-                    {isExpired(medication.expirationDate) && (
+                    {getName(medication)}
+                    {isExpired(getExpires(medication)) && (
                       <span className="status-badge expired-badge">Vencido</span>
                     )}
-                    {isExpiringSoon(medication.expirationDate) && !isExpired(medication.expirationDate) && (
+                    {isExpiringSoon(getExpires(medication)) && !isExpired(getExpires(medication)) && (
                       <span className="status-badge warning-badge">Por vencer</span>
                     )}
                   </td>
-                  <td className="medication-description">{medication.description}</td>
-                  <td className="expiration-date">{formatDate(medication.expirationDate)}</td>
-                  <td className="date-added">{formatDate(medication.dateAdded)}</td>
+                  <td className="medication-description">{getDescription(medication)}</td>
+                  <td className="quantity-cell">{medication.quantity}</td>
+                  <td className="unit-cell">{medication.unit}</td>
+                  <td className="lot-cell">{medication.lotCode}</td>
+                  <td className="expiration-date">{formatDate(getExpires(medication))}</td>
+                  <td className="date-added">{formatDate(getCreatedAt(medication))}</td>
                 </tr>
               ))}
             </tbody>
           </table>
         </div>
+        {!loading && items.length === 0 && !error && (
+          <p className="empty-state">No hay medicamentos en tu inventario.</p>
+        )}
 
         {/* Resumen */}
         <div className="inventory-summary">
@@ -167,13 +212,13 @@ const Inventory = () => {
           </div>
           <div className="summary-item warning">
             <span className="summary-number">
-              {items.filter(m => isExpiringSoon(m.expirationDate) && !isExpired(m.expirationDate)).length}
+              {items.filter(m => isExpiringSoon(getExpires(m)) && !isExpired(getExpires(m))).length}
             </span>
             <span className="summary-label">Por vencer (30 días)</span>
           </div>
           <div className="summary-item danger">
             <span className="summary-number">
-              {items.filter(m => isExpired(m.expirationDate)).length}
+              {items.filter(m => isExpired(getExpires(m))).length}
             </span>
             <span className="summary-label">Vencidos</span>
           </div>

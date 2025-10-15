@@ -38,4 +38,21 @@ public class InventoryController {
         return inventoryService.addMedicationToInventory(userId, request);
     }
 
+    @GetMapping("/mine")
+    public ResponseEntity<BasicResponse> listMine(
+            @AuthenticationPrincipal UserMapper user
+    ) {
+        long userId = user.getId().longValue();
+        return inventoryService.listUserInventory(userId);
+    }
+
+    @GetMapping("/search")
+    public ResponseEntity<BasicResponse> search(
+            @AuthenticationPrincipal UserMapper user,
+            @RequestParam("name") String medicationName
+    ) {
+        long userId = user.getId().longValue();
+        return inventoryService.searchByName(userId, medicationName);
+    }
+
 }
