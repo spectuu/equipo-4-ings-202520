@@ -6,6 +6,7 @@ import lombok.extern.slf4j.Slf4j;
 import medicod.domain.dto.BasicResponse;
 import medicod.domain.dto.inventory.InventoryCreateRequest;
 import medicod.domain.dto.inventory.InventoryItemResponse;
+import medicod.domain.dto.inventory.InventoryUpdateRequest;
 import medicod.domain.repository.account.AccountRepository;
 import medicod.domain.repository.inventory.InventoryRepository;
 import medicod.domain.repository.medication.MedicationRepository;
@@ -52,6 +53,7 @@ public class InventoryService {
             String medDescription,
             LocalDateTime medCreatedAt
     ) {
+
         long id = r.getId() != null ? r.getId().longValue() : -1L;
         long medId = r.getMedicationId() != null ? r.getMedicationId().longValue() : -1L;
         int qty = r.getQuantity() != null ? r.getQuantity().intValue() : 0;
@@ -67,13 +69,16 @@ public class InventoryService {
                 .expires(r.getExpires())
                 .createdAt(medCreatedAt)
                 .build();
+
     }
 
     private ResponseEntity<BasicResponse> bad(String msg, HttpStatus s) {
+
         return ResponseEntity.status(s)
                 .body(BasicResponse.builder().code(s.value())
                         .message(s.is2xxSuccessful() ? "SUCCESS" : (s == HttpStatus.NOT_FOUND ? "NOT_FOUND" : "ERROR"))
                         .display(msg).build());
+
     }
 
     /* ------------------------ Services ------------------------ */
@@ -164,17 +169,92 @@ public class InventoryService {
         );
     }
 
+    public ResponseEntity<BasicResponse> updateInventoryItem(long userId, long inventoryId, InventoryUpdateRequest req) {
+
+        MedicodInventoryRecord rec = inventoryRepo.getMedicineById(inventoryId);
+
+        if (rec == null) return bad("Inventory item not found.", HttpStatus.NOT_FOUND);
+
+        if (!rec.getUserId().equals(ULong.valueOf(userId)))
+            return bad("You are not the owner of this item.", HttpStatus.FORBIDDEN);
+        if (req.getQuantity() != null && req.getQuantity() < 0)
+            return bad("Quantity must be >= 0", HttpStatus.BAD_REQUEST);
+
+        String newLot = req.getLotCode() != null ? normalizeLot(req.getLotCode()) : rec.getLotCode();
+
+        if (req.getQuantity() != null) rec.setQuantity(UInteger.valueOf(req.getQuantity()));
+
+        if (req.getUnit() != null) rec.setUnit(req.getUnit());
+
+        if (req.getLotCode() != null) rec.setLotCode(newLot);
+
+        if (req.getExpires() != null) rec.setExpires(req.getExpires());
+
+        if (req.getLotCode() != null) {
+
+            boolean exists = inventoryRepo.fetchIfMedicineExists(rec.getMedicationId(), userId, newLot);
+
+            if (exists) {
+
+                var maybeSame = ctx.selectFrom(MEDICOD_INVENTORY)
+                        .where(MEDICOD_INVENTORY.USER_ID.eq(rec.getUserId()))
+                        .and(MEDICOD_INVENTORY.MEDICATION_ID.eq(rec.getMedicationId()))
+                        .and(newLot == null ? MEDICOD_INVENTORY.LOT_CODE.isNull() : MEDICOD_INVENTORY.LOT_CODE.eq(newLot))
+                        .fetchOne();
+                if (maybeSame == null || !maybeSame.getId().equals(rec.getId())) {
+                    return bad("Another item with the same lot already exists.", HttpStatus.CONFLICT);
+                }
+            }
+        }
+
+        MedicodInventoryRecord updated = inventoryRepo.update(rec);
+        if (updated == null) {
+            // o 404 si esperabas que existiera
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(
+                    BasicResponse.builder()
+                            .code(400).message("ERROR")
+                            .display("Could not update inventory item (not found or unchanged).")
+                            .build()
+            );
+        }
+
+        var medId = updated.getMedicationId() != null ? updated.getMedicationId() : rec.getMedicationId();
+
+        var medRow = ctx.select(
+                        MEDICOD_MEDICATIONS.NAME,
+                        MEDICOD_MEDICATIONS.DESCRIPTION,
+                        MEDICOD_MEDICATIONS.CREATED_AT
+                )
+                .from(MEDICOD_MEDICATIONS)
+                .where(MEDICOD_MEDICATIONS.ID.eq(medId))
+                .fetchOne();
+
+        String medName = medRow.get(MEDICOD_MEDICATIONS.NAME);
+        String medDesc = medRow.get(MEDICOD_MEDICATIONS.DESCRIPTION);
+        LocalDateTime medCreatedAt = medRow.get(MEDICOD_MEDICATIONS.CREATED_AT);
+
+        return ResponseEntity.ok(
+                BasicResponse.builder()
+                        .code(200).message("SUCCESS").display("Inventory item updated")
+                        .data(toResponse(updated, medName, medDesc, medCreatedAt))
+                        .build()
+        );
+    }
+
     public ResponseEntity<BasicResponse> searchByName(long userId, String medicationName) {
+
         if (medicationName == null || medicationName.trim().isEmpty()) {
             return ResponseEntity.badRequest().body(
                     BasicResponse.builder().code(400).message("ERROR")
                             .display("Medication name is required").build()
             );
+
         }
 
         String name = medicationName.trim();
 
-               MedicodMedicationsRecord med = medicationRepo.getMedicationByName(name);
+        MedicodMedicationsRecord med = medicationRepo.getMedicationByName(name);
+
         if (med == null) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(
                     BasicResponse.builder().code(404).message("NOT_FOUND")
@@ -197,9 +277,7 @@ public class InventoryService {
                         .data(list)
                         .build()
         );
+
     }
-
-
-
 
 }

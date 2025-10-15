@@ -8,6 +8,7 @@ import lombok.extern.slf4j.Slf4j;
 import medicod.configuration.mapper.UserMapper;
 import medicod.domain.dto.BasicResponse;
 import medicod.domain.dto.inventory.InventoryCreateRequest;
+import medicod.domain.dto.inventory.InventoryUpdateRequest;
 import medicod.domain.service.inventory.InventoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -36,6 +37,18 @@ public class InventoryController {
     ) {
         long userId = user.getId().longValue();
         return inventoryService.addMedicationToInventory(userId, request);
+    }
+    @PutMapping("/{inventoryId}")
+    public ResponseEntity<BasicResponse> update(
+            @AuthenticationPrincipal UserMapper user,
+            @PathVariable long inventoryId,
+            @RequestBody
+            @io.swagger.v3.oas.annotations.parameters.RequestBody(required = true)
+            @Valid
+            InventoryUpdateRequest request
+    ) {
+        long userId = user.getId().longValue();
+        return inventoryService.updateInventoryItem(userId, inventoryId, request);
     }
 
     @GetMapping("/mine")
