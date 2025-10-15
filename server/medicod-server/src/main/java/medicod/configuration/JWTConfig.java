@@ -22,6 +22,11 @@ import org.springframework.web.filter.OncePerRequestFilter;
 @RequiredArgsConstructor
 public class JWTConfig extends OncePerRequestFilter {
 
+    /*
+    * This filter intercepts incoming HTTP requests to validate JWT tokens.
+    * If a valid token is found, it sets the authentication in the security context.
+     */
+
     @Autowired
     private JwtService jwtService;
 
@@ -63,6 +68,7 @@ public class JWTConfig extends OncePerRequestFilter {
 
     }
 
+    // Extracts the JWT token from the Authorization header
     private String getTokenFromRequest(HttpServletRequest request) {
         String authorization = request.getHeader(HttpHeaders.AUTHORIZATION);
         if (authorization != null && authorization.startsWith("Bearer ")) {
@@ -70,5 +76,7 @@ public class JWTConfig extends OncePerRequestFilter {
         }
         return null;
     }
+
+
 
 }
