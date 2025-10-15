@@ -46,4 +46,13 @@ public class InventoryController {
         return inventoryService.listUserInventory(userId);
     }
 
+    @GetMapping("/search")
+    public ResponseEntity<BasicResponse> search(
+            @AuthenticationPrincipal UserMapper user,
+            @RequestParam("name") String medicationName
+    ) {
+        long userId = user.getId().longValue();
+        return inventoryService.searchByName(userId, medicationName);
+    }
+
 }

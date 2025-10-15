@@ -164,6 +164,41 @@ public class InventoryService {
         );
     }
 
+    public ResponseEntity<BasicResponse> searchByName(long userId, String medicationName) {
+        if (medicationName == null || medicationName.trim().isEmpty()) {
+            return ResponseEntity.badRequest().body(
+                    BasicResponse.builder().code(400).message("ERROR")
+                            .display("Medication name is required").build()
+            );
+        }
+
+        String name = medicationName.trim();
+
+               MedicodMedicationsRecord med = medicationRepo.getMedicationByName(name);
+        if (med == null) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(
+                    BasicResponse.builder().code(404).message("NOT_FOUND")
+                            .display("Medication not found").build()
+            );
+        }
+
+        List<MedicodInventoryRecord> items = inventoryRepo.getUserMedicines(userId).stream()
+                .filter(r -> med.getId().equals(r.getMedicationId()))
+                .toList();
+
+        List<InventoryItemResponse> list = items.stream()
+                .map(r -> toResponse(r, med.getName(), med.getDescription(), med.getCreatedAt()))
+                .toList();
+
+        return ResponseEntity.ok(
+                BasicResponse.builder()
+                        .code(200).message("SUCCESS")
+                        .display(list.isEmpty() ? "No inventory entries for this medication." : "Inventory found")
+                        .data(list)
+                        .build()
+        );
+    }
+
 
 
 
