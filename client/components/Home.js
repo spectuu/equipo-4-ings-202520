@@ -92,7 +92,7 @@ const Home = () => {
   return (
     <div className="home-container">
       <div className="home-content">
-        {/* Header con saludo y menú */}
+        {}
         <div className="home-header">
           <div className="greeting">
             <h1>Hola, {displayName} 👋</h1>
@@ -100,13 +100,13 @@ const Home = () => {
           <UserMenu />
         </div>
 
-        {/* Fecha y hora */}
+        {}
         <div className="datetime-section">
           <p className="current-date">{currentDate}</p>
           <h2 className="current-time">{currentTime}</h2>
         </div>
 
-        {/* Próximos recordatorios */}
+        {}
         <div className="reminders-section">
           <h3>Próximos recordatorios</h3>
           <div className="reminders-list">
@@ -127,7 +127,7 @@ const Home = () => {
           </div>
         </div>
 
-        {/* Botones principales */}
+        {}
         <div className="main-buttons">
           <button 
             className="main-button inventory-button"
