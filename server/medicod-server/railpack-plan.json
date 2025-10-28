@@ -1,0 +1,10 @@
+{
+  "build": {
+    "builder": "gradle",
+    "buildCommand": "./gradlew clean build -x test",
+    "outputDir": "build/libs"
+  },
+  "deploy": {
+    "startCommand": "java -jar $(find build/libs -name '*.jar' -not -name '*-plain.jar' | head -1)"
+  }
+}

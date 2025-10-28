@@ -1,56 +1,20 @@
 #!/bin/bash
 
-# Script de inicio rápido para Medicod Backend con Docker
+# Script de inicio para Railway
+echo "Starting Medicod Backend..."
 
-echo "🚀 Iniciando Medicod Backend con Docker..."
-echo ""
+# Buscar el archivo JAR principal (excluyendo el JAR "plain")
+JAR_FILE=$(find build/libs -name '*.jar' -not -name '*-plain.jar' | head -1)
 
-# Verificar que Docker esté instalado
-if ! command -v docker &> /dev/null; then
-    echo "❌ Docker no está instalado. Por favor instala Docker primero."
+if [ -z "$JAR_FILE" ]; then
+    echo "Error: No JAR file found in build/libs/"
+    echo "Available files:"
+    ls -la build/libs/ || echo "build/libs directory not found"
     exit 1
 fi
 
-# Verificar que Docker Compose esté instalado
-if ! command -v docker-compose &> /dev/null; then
-    echo "❌ Docker Compose no está instalado. Por favor instala Docker Compose primero."
-    exit 1
-fi
+echo "Found JAR file: $JAR_FILE"
+echo "Starting application..."
 
-# Verificar que Docker Desktop esté ejecutándose
-echo "🔍 Verificando que Docker Desktop esté ejecutándose..."
-if ! docker info &> /dev/null; then
-    echo ""
-    echo "❌ Docker Desktop no está ejecutándose o no está disponible."
-    echo ""
-    echo "📋 Soluciones posibles:"
-    echo "   1. Inicia Docker Desktop desde el menú de inicio"
-    echo "   2. Espera a que Docker Desktop termine de cargar completamente"
-    echo "   3. Reinicia Docker Desktop si es necesario"
-    echo ""
-    echo "💡 Una vez que Docker Desktop esté ejecutándose, vuelve a ejecutar este script."
-    exit 1
-fi
-
-echo "✅ Docker y Docker Compose están instalados y ejecutándose"
-echo ""
-
-# Dar permisos de ejecución al script de inicialización
-chmod +x init-db.sh
-
-echo "🔧 Construyendo e iniciando contenedores..."
-echo ""
-
-# Construir y ejecutar los contenedores
-docker-compose up --build
-
-echo ""
-echo "🎉 ¡Medicod Backend está ejecutándose!"
-echo ""
-echo "📋 Información de conexión:"
-echo "   Backend: http://localhost:8080/medicod/dev"
-echo "   MySQL: localhost:3306"
-echo ""
-echo "💡 Para ejecutar en segundo plano, usa: docker-compose up -d --build"
-echo "💡 Para detener los servicios, usa: docker-compose down"
-echo "💡 Para ver logs, usa: docker-compose logs -f"
+# Ejecutar la aplicación
+exec java -jar "$JAR_FILE"
