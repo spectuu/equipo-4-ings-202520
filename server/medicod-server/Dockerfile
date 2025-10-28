@@ -1,12 +1,11 @@
-# Dockerfile simplificado para Railway
+# Dockerfile con configuración Gradle Groovy (más estable)
 FROM gradle:8.5-jdk21 AS build
 
 WORKDIR /app
 
-# Copiar archivos de configuración de Gradle (versiones limpias)
+# Copiar archivos de configuración de Gradle (versiones Groovy)
 COPY gradle/ gradle/
-COPY build.gradle.kts.new build.gradle.kts
-COPY settings.gradle.kts.new settings.gradle.kts
+COPY build.gradle settings.gradle
 
 # Copiar código fuente
 COPY src/ src/
