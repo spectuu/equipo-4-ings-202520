@@ -5,15 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2796617a-2808-4ce5-b27e-15403351ac12" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../../client/components/Inventory.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../client/pages/inventory.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../client/components/Home.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../client/components/Home.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../client/components/LoginForm.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../client/components/LoginForm.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../client/components/Inventory.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../client/components/Inventory.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../client/components/SignupForm.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../client/components/SignupForm.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../client/styles/globals.css" beforeDir="false" afterPath="$PROJECT_DIR$/../../client/styles/globals.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/8.10/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.10/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/8.10/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.10/fileHashes/fileHashes.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/8.10/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.10/fileHashes/fileHashes.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -92,9 +91,9 @@
     "RequestMappingsPanelWidth1": "75",
     "RunOnceActivity.git.unshallow": "true",
     "Spring Boot.MedicodApiApplication.executor": "Run",
-    "git-widget-placeholder": "Merging feature/RF-INV-004-view-medications-in-inventory",
+    "git-widget-placeholder": "development",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/SoySp/OneDrive/Escritorio/University/equipo-4-ings-202520/server/medicod-server/src/main/resources",
+    "last_opened_file_path": "C:/Users/SoySp/OneDrive/Escritorio/examify/examify-server",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -149,6 +148,14 @@
       <option name="presentableId" value="Default" />
       <updated>1759536113017</updated>
       <workItem from="1759536116013" duration="6149000" />
+      <workItem from="1760627986294" duration="6196000" />
+      <workItem from="1761420406931" duration="1380000" />
+      <workItem from="1761424143221" duration="90000" />
+      <workItem from="1761424629639" duration="451000" />
+      <workItem from="1761425253322" duration="2961000" />
+      <workItem from="1761569806130" duration="307000" />
+      <workItem from="1761596452490" duration="4000" />
+      <workItem from="1761596493433" duration="75000" />
     </task>
     <servers />
   </component>

@@ -31,6 +31,7 @@ const Inventory = () => {
   const [saving, setSaving] = useState(false);
   const [editingId, setEditingId] = useState(null);
   const [editForm, setEditForm] = useState({ quantity: '', unit: '', lotCode: '', expires: '' });
+  const [activeFilter, setActiveFilter] = useState('all'); // 'all', 'expired', 'expiring', 'lowstock'
 
   useEffect(() => {
     if (!isAuthenticated()) return;
@@ -184,6 +185,15 @@ const Inventory = () => {
   const getExpires = (item) => item.expires || item.expirationDate || item.expiryDate || null;
   const getCreatedAt = (item) => item.createdAt || item.dateAdded || item.addedAt || null;
 
+  // Filtrar items basado en el filtro activo
+  const filteredItems = items.filter((medication) => {
+    if (activeFilter === 'all') return true;
+    if (activeFilter === 'expired') return isExpired(getExpires(medication));
+    if (activeFilter === 'expiring') return isExpiringSoon(getExpires(medication)) && !isExpired(getExpires(medication));
+    if (activeFilter === 'lowstock') return isLowStock(medication);
+    return true;
+  });
+
   return (
     <div className="inventory-container">
       <div className="inventory-content">
@@ -195,7 +205,33 @@ const Inventory = () => {
           >
             ← Volver
           </button>
-          <h1>Inventario de Medicamentos</h1>
+          <div>
+            <h1>Inventario de Medicamentos</h1>
+            {activeFilter !== 'all' && (
+              <p style={{ margin: 0, fontSize: '14px', color: '#666', marginTop: '4px' }}>
+                Filtro activo: <strong>
+                  {activeFilter === 'expired' && 'Vencidos'}
+                  {activeFilter === 'expiring' && 'Por vencer'}
+                  {activeFilter === 'lowstock' && 'Pocas unidades'}
+                </strong>
+                {' '}
+                <button 
+                  onClick={() => setActiveFilter('all')}
+                  style={{
+                    background: 'none',
+                    border: 'none',
+                    color: '#d2691e',
+                    cursor: 'pointer',
+                    textDecoration: 'underline',
+                    fontSize: '14px',
+                    padding: 0
+                  }}
+                >
+                  Limpiar filtro
+                </button>
+              </p>
+            )}
+          </div>
           <div style={{ marginLeft: 'auto' }}>
             <div className="search-container">
               <span className="search-icon" aria-hidden>🔎</span>
@@ -231,7 +267,7 @@ const Inventory = () => {
               </tr>
             </thead>
             <tbody>
-              {items.map((medication) => (
+              {filteredItems.map((medication) => (
                 <tr 
                   key={medication.id}
                   className={`
@@ -271,26 +307,45 @@ const Inventory = () => {
         {!loading && items.length === 0 && !error && (
           <p className="empty-state">No hay medicamentos en tu inventario.</p>
         )}
+        {!loading && items.length > 0 && filteredItems.length === 0 && (
+          <p className="empty-state">No hay medicamentos con el filtro seleccionado.</p>
+        )}
 
         {/* Resumen */}
         <div className="inventory-summary">
-          <div className="summary-item">
+          <div 
+            className={`summary-item ${activeFilter === 'all' ? 'active' : ''}`}
+            onClick={() => setActiveFilter('all')}
+            style={{ cursor: 'pointer' }}
+          >
             <span className="summary-number">{items.length}</span>
             <span className="summary-label">Total de medicamentos</span>
           </div>
-          <div className="summary-item warning">
+          <div 
+            className={`summary-item warning ${activeFilter === 'expiring' ? 'active' : ''}`}
+            onClick={() => setActiveFilter('expiring')}
+            style={{ cursor: 'pointer' }}
+          >
             <span className="summary-number">
               {items.filter(m => isExpiringSoon(getExpires(m)) && !isExpired(getExpires(m))).length}
             </span>
             <span className="summary-label">Por vencer (30 días)</span>
           </div>
-          <div className="summary-item danger">
+          <div 
+            className={`summary-item danger ${activeFilter === 'expired' ? 'active' : ''}`}
+            onClick={() => setActiveFilter('expired')}
+            style={{ cursor: 'pointer' }}
+          >
             <span className="summary-number">
               {items.filter(m => isExpired(getExpires(m))).length}
             </span>
             <span className="summary-label">Vencidos</span>
           </div>
-          <div className="summary-item" style={{ borderLeft: '4px solid #0891b2' }}>
+          <div 
+            className={`summary-item ${activeFilter === 'lowstock' ? 'active' : ''}`}
+            onClick={() => setActiveFilter('lowstock')}
+            style={{ borderLeft: '4px solid #0891b2', cursor: 'pointer' }}
+          >
             <span className="summary-number">
               {items.filter(isLowStock).length}
             </span>
