@@ -7,11 +7,11 @@ WORKDIR /app
 COPY gradle/ gradle/
 COPY build.gradle.kts settings.gradle.kts
 
-# Copiar código fuente
+# Copiar código fuente (incluye archivos jOOQ generados)
 COPY src/ src/
 
-# Construir la aplicación
-RUN gradle build -x test
+# Construir la aplicación (sin generar código jOOQ)
+RUN gradle build -x test -x jooq
 
 # Imagen final optimizada
 FROM openjdk:21-jdk-slim
