@@ -1,11 +1,2 @@
-# Railway deployment configuration
-
-# Railway will automatically detect this as a Docker project
-# and use the Dockerfile in the root directory
-
-# Environment variables for Railway
-RAILWAY_ENVIRONMENT=production
-SPRING_PROFILES_ACTIVE=railway
-
-# Database configuration will be provided by Railway
-# Railway automatically creates DATABASE_URL environment variable
+[env]
+SPRING_PROFILES_ACTIVE = "railway"
