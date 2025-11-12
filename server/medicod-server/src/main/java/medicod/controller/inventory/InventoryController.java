@@ -24,6 +24,10 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 public class InventoryController {
 
+    /*
+
+
+
     @Autowired
     private final InventoryService inventoryService;
 
@@ -67,5 +71,5 @@ public class InventoryController {
         long userId = user.getId().longValue();
         return inventoryService.searchByName(userId, medicationName);
     }
-
+     */
 }

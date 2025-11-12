@@ -16,16 +16,16 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
-
+   /*
 @Slf4j
 @Component
 @RequiredArgsConstructor
 public class JWTConfig extends OncePerRequestFilter {
 
-    /*
+
     * This filter intercepts incoming HTTP requests to validate JWT tokens.
     * If a valid token is found, it sets the authentication in the security context.
-     */
+
 
     @Autowired
     private JwtService jwtService;
@@ -76,7 +76,8 @@ public class JWTConfig extends OncePerRequestFilter {
         }
         return null;
     }
+    }
+  */
 
 
 
-}

@@ -1,10 +1,10 @@
 package medicod.domain.repository.account;
 
-import com.medicod.database.tables.records.MedicodUsersRecord;
-
 import java.util.List;
 
 public interface AccountRepository {
+
+    /*
 
     List<MedicodUsersRecord> getAllAccounts();
 
@@ -19,5 +19,7 @@ public interface AccountRepository {
     MedicodUsersRecord getAccountByEmail(String email);
 
     void save(MedicodUsersRecord account);
+
+     */
 
 }

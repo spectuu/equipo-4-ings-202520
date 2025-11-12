@@ -1,6 +1,5 @@
 package medicod.domain.repository.medication.impl;
 
-import com.medicod.database.tables.records.MedicodMedicationsRecord;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import medicod.domain.repository.medication.MedicationRepository;
@@ -11,12 +10,12 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-import static com.medicod.database.Tables.MEDICOD_MEDICATIONS;
-
 @RequiredArgsConstructor
 @Transactional
 @Repository
 public class MedicationInventoryImpl implements MedicationRepository {
+
+    /*
 
     @Autowired
     private final DSLContext context;
@@ -77,4 +76,7 @@ public class MedicationInventoryImpl implements MedicationRepository {
                         .where(MEDICOD_MEDICATIONS.ID.eq(ULong.valueOf(id)))
         );
     }
+
+
+     */
 }

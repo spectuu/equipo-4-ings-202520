@@ -20,6 +20,8 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 public class AuthController {
 
+    /*
+
     @Autowired
     private AuthService authService;
 
@@ -40,5 +42,7 @@ public class AuthController {
             LoginRequest loginRequest) {
         return authService.login(loginRequest);
     }
+
+     */
 
 }

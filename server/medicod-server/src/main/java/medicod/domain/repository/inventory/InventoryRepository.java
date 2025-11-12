@@ -1,11 +1,12 @@
 package medicod.domain.repository.inventory;
 
-import com.medicod.database.tables.records.MedicodInventoryRecord;
 import org.jooq.types.ULong;
 
 import java.util.List;
 
 public interface InventoryRepository {
+
+    /*
 
     List<MedicodInventoryRecord> getUserMedicines(long userId);
 
@@ -20,5 +21,7 @@ public interface InventoryRepository {
     void delete(long id);
 
     boolean fetchIfMedicineExists(ULong medicineId, long userId, String lot);
+
+     */
 
 }

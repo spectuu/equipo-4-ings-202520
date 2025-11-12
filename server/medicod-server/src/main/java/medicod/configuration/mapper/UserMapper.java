@@ -1,6 +1,5 @@
 package medicod.configuration.mapper;
 
-import com.medicod.database.enums.MedicodUsersRole;
 import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -26,11 +25,16 @@ public class UserMapper implements UserDetails {
     private String username;
     private String password;
 
+    /*
+
     private MedicodUsersRole role;
+
+
+     */
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of(new SimpleGrantedAuthority((role.name())));
+        return List.of(new SimpleGrantedAuthority(("role.name()")));
     }
 
     @Override

@@ -1,6 +1,5 @@
 package medicod.domain.repository.account.impl;
 
-import com.medicod.database.tables.records.MedicodUsersRecord;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import medicod.domain.repository.account.AccountRepository;
@@ -11,12 +10,12 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-import static com.medicod.database.Tables.MEDICOD_USERS;
-
 @RequiredArgsConstructor
 @Transactional
 @Repository
 public class AccountRepositoryImpl implements AccountRepository {
+
+    /*
 
     @Autowired
     private final DSLContext context;
@@ -72,5 +71,5 @@ public class AccountRepositoryImpl implements AccountRepository {
                 .execute();
     }
 
-
+     */
 }

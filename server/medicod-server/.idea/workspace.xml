@@ -5,14 +5,68 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2796617a-2808-4ce5-b27e-15403351ac12" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../../client/components/Inventory.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../client/components/Inventory.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../client/components/SignupForm.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../client/components/SignupForm.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../client/styles/globals.css" beforeDir="false" afterPath="$PROJECT_DIR$/../../client/styles/globals.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/8.10/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.10/executionHistory/executionHistory.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/8.10/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.10/fileHashes/fileHashes.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/8.10/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.10/fileHashes/fileHashes.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.dockerignore" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.railwayignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/DEPLOYMENT-GUIDE.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/DOCKER-README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Dockerfile.railway" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Procfile" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle.kts.railway" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/diagnose.ps1" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/diagnose.sh" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gradle-wrapper.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gradle-wrapper.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/init-db.sh" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/railpack-plan.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/railway-init.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/railway.toml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/medicod/database/DefaultCatalog.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/medicod/database/Indexes.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/medicod/database/Keys.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/medicod/database/Medicod.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/medicod/database/Tables.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/medicod/database/enums/MedicodRemindersFrequency.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/medicod/database/enums/MedicodUsersRole.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/medicod/database/tables/MedicodInventory.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/medicod/database/tables/MedicodMedications.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/medicod/database/tables/MedicodReminders.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/medicod/database/tables/MedicodUsers.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/medicod/database/tables/daos/MedicodInventoryDao.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/medicod/database/tables/daos/MedicodMedicationsDao.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/medicod/database/tables/daos/MedicodRemindersDao.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/medicod/database/tables/daos/MedicodUsersDao.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/medicod/database/tables/pojos/MedicodInventory.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/medicod/database/tables/pojos/MedicodMedications.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/medicod/database/tables/pojos/MedicodReminders.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/medicod/database/tables/pojos/MedicodUsers.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/medicod/database/tables/records/MedicodInventoryRecord.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/medicod/database/tables/records/MedicodMedicationsRecord.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/medicod/database/tables/records/MedicodRemindersRecord.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/medicod/database/tables/records/MedicodUsersRecord.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/medicod/configuration/AppConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/medicod/configuration/AppConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/medicod/configuration/JWTConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/medicod/configuration/JWTConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/medicod/configuration/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/medicod/configuration/SecurityConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/medicod/configuration/mapper/UserMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/medicod/configuration/mapper/UserMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/medicod/controller/auth/AuthController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/medicod/controller/auth/AuthController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/medicod/controller/inventory/InventoryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/medicod/controller/inventory/InventoryController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/medicod/domain/repository/account/AccountRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/medicod/domain/repository/account/AccountRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/medicod/domain/repository/account/impl/AccountRepositoryImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/medicod/domain/repository/account/impl/AccountRepositoryImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/medicod/domain/repository/inventory/InventoryRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/medicod/domain/repository/inventory/InventoryRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/medicod/domain/repository/inventory/impl/InventoryRepositoryImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/medicod/domain/repository/inventory/impl/InventoryRepositoryImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/medicod/domain/repository/medication/MedicationRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/medicod/domain/repository/medication/MedicationRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/medicod/domain/repository/medication/impl/MedicationInventoryImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/medicod/domain/repository/medication/impl/MedicationInventoryImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/medicod/domain/service/auth/AuthService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/medicod/domain/service/auth/AuthService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/medicod/domain/service/auth/JwtService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/medicod/domain/service/auth/JwtService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/medicod/domain/service/inventory/InventoryService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/medicod/domain/service/inventory/InventoryService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application-docker.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application-railway.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/start.ps1" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/start.sh" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,7 +106,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$/../.." value="feature/RF-SEG-002-log-out" />
+        <entry key="$PROJECT_DIR$/../.." value="feature/RF-REC-001-CREATE-A-DAILY-REMINDER" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
@@ -89,6 +143,7 @@
     "RequestMappingsPanelOrder1": "1",
     "RequestMappingsPanelWidth0": "75",
     "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
     "Spring Boot.MedicodApiApplication.executor": "Run",
     "git-widget-placeholder": "development",
@@ -156,6 +211,7 @@
       <workItem from="1761569806130" duration="307000" />
       <workItem from="1761596452490" duration="4000" />
       <workItem from="1761596493433" duration="75000" />
+      <workItem from="1762980587524" duration="3995000" />
     </task>
     <servers />
   </component>

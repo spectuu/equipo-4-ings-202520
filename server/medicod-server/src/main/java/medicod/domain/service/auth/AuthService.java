@@ -1,7 +1,5 @@
 package medicod.domain.service.auth;
 
-import com.medicod.database.enums.MedicodUsersRole;
-import com.medicod.database.tables.records.MedicodUsersRecord;
 import lombok.extern.slf4j.Slf4j;
 import medicod.domain.dto.BasicResponse;
 import medicod.domain.dto.auth.AuthResponse;
@@ -22,6 +20,8 @@ import java.time.LocalDateTime;
 @Slf4j
 @Service
 public class AuthService {
+
+    /*
 
     @Autowired
     private AccountRepository accountRepository;
@@ -142,5 +142,7 @@ public class AuthService {
                         .build());
 
     }
+
+     */
 
 }

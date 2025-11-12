@@ -1,10 +1,12 @@
 package medicod.domain.repository.medication;
 
-import com.medicod.database.tables.records.MedicodMedicationsRecord;
-
 import java.util.List;
 
 public interface MedicationRepository {
+
+    /*
+
+
 
     List<MedicodMedicationsRecord> getAllMedications();
 
@@ -19,5 +21,8 @@ public interface MedicationRepository {
     void deleteMedication(long id);
 
     boolean medicationExists(long id);
+
+
+     */
 
 }

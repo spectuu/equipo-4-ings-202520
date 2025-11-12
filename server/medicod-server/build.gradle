@@ -1,63 +1,112 @@
 plugins {
     id 'java'
-    id 'org.springframework.boot' version '3.3.5'
-    id 'io.spring.dependency-management' version '1.1.6'
+    id 'org.springframework.boot' version '3.4.3'
+    id 'io.spring.dependency-management' version '1.1.7'
+    id 'nu.studer.jooq' version '9.0'
 }
 
-group = 'medicod'
-version = '1.0-SNAPSHOT'
-
-repositories {
-    mavenCentral()
-}
+group = 'project'
+version = '0.0.1-SNAPSHOT'
 
 java {
-    toolchain {
-        languageVersion = JavaLanguageVersion.of(21)
+    toolchain { languageVersion = JavaLanguageVersion.of(21) }
+}
+
+repositories { mavenCentral() }
+
+dependencies {
+
+    // Spring Boot starters
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-jdbc'
+    implementation 'org.springframework.boot:spring-boot-starter-jooq'
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+    implementation 'org.springframework.boot:spring-boot-starter-actuator'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-websocket'
+    implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.6.0'
+
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.18.3'
+    implementation 'org.mindrot:jbcrypt:0.4'
+    implementation 'io.jsonwebtoken:jjwt-api:0.12.6'
+    implementation 'org.projectlombok:lombok'
+
+    // Flyway for database migrations
+    implementation 'org.flywaydb:flyway-core'
+    implementation 'org.flywaydb:flyway-mysql'
+
+    runtimeOnly 'io.jsonwebtoken:jjwt-impl:0.12.6'
+    runtimeOnly 'io.jsonwebtoken:jjwt-jackson:0.12.6'
+    runtimeOnly 'com.mysql:mysql-connector-j:9.0.0'
+
+    annotationProcessor 'org.projectlombok:lombok'
+
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'org.springframework.security:spring-security-test'
+
+    jooqGenerator 'org.jooq:jooq-meta:3.19.19'
+    jooqGenerator 'org.jooq:jooq-codegen:3.19.19'
+    jooqGenerator 'com.mysql:mysql-connector-j:9.0.0'
+}
+
+jooq {
+    version = '3.19.19'
+    configurations {
+        main {
+            generationTool {
+                logging = org.jooq.meta.jaxb.Logging.DEBUG
+                jdbc {
+                    driver = 'com.mysql.cj.jdbc.Driver'
+
+                    def jdbcUrl  = System.getenv('JOOQ_JDBC_URL')
+
+                    def dbHost   = System.getenv('MYSQLHOST')
+                    def dbPort   = System.getenv('MYSQLPORT') ?: '3306'
+                    def dbName   = System.getenv('MYSQLDATABASE')
+                    def dbUser   = System.getenv('JOOQ_DB_USER') ?: System.getenv('MYSQLUSER')
+                    def dbPass   = System.getenv('JOOQ_DB_PASS') ?: System.getenv('MYSQLPASSWORD')
+
+                    url      = jdbcUrl ?: "jdbc:mysql://${dbHost}:${dbPort}/${dbName}?sslMode=REQUIRED&serverTimezone=UTC"
+                    user     = dbUser
+                    password = dbPass
+                }
+                generator {
+                    name = 'org.jooq.codegen.DefaultGenerator'
+                    database {
+                        name = 'org.jooq.meta.mysql.MySQLDatabase'
+                        inputSchema = System.getenv('MYSQLDATABASE')
+                        includes = '.*'
+                    }
+                    generate {
+                        records = true; daos = true; pojos = true; fluentSetters = true
+                    }
+                    target { packageName = 'com.examify.database'; directory = 'src/generated/jooq' }
+                }
+            }
+        }
     }
 }
 
-dependencies {
-    // Spring Boot Starters
-    implementation 'org.springframework.boot:spring-boot-starter-web'
-    implementation 'org.springframework.boot:spring-boot-starter-jooq'
-    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-    implementation 'org.springframework.boot:spring-boot-starter-jdbc'
-    implementation 'org.springframework.boot:spring-boot-starter-security'
-    implementation 'org.springframework.boot:spring-boot-starter-actuator'
+sourceSets { main { java { srcDir 'src/generated/jooq' } } }
 
-    // Documentation
-    implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.6.0'
-    
-    // JSON Processing
-    implementation 'com.fasterxml.jackson.core:jackson-databind'
-    
-    // Security
-    implementation 'org.mindrot:jbcrypt:0.4'
-    implementation 'io.jsonwebtoken:jjwt-api:0.12.6'
-    
-    // jOOQ (runtime only)
-    implementation 'org.jooq:jooq:3.19.19'
-    
-    // Lombok
-    compileOnly 'org.projectlombok:lombok'
-    annotationProcessor 'org.projectlombok:lombok'
-    testCompileOnly 'org.projectlombok:lombok'
-    testAnnotationProcessor 'org.projectlombok:lombok'
-    
-    // Runtime dependencies
-    runtimeOnly 'io.jsonwebtoken:jjwt-impl:0.12.6'
-    runtimeOnly 'io.jsonwebtoken:jjwt-jackson:0.12.6'
-    runtimeOnly 'com.mysql:mysql-connector-j'
-    
-    // Test dependencies
-    testImplementation 'org.springframework.security:spring-security-test'
-    testImplementation 'org.springframework.boot:spring-boot-starter-test'
-    testImplementation platform('org.junit:junit-bom:5.10.0')
-    testImplementation 'org.junit.jupiter:junit-jupiter'
-    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+dependencies {
+    jooqGenerator 'org.jooq:jooq-meta:3.19.19'
+    jooqGenerator 'org.jooq:jooq-codegen:3.19.19'
+    jooqGenerator 'com.mysql:mysql-connector-j:9.0.0'
 }
 
-test {
-    useJUnitPlatform()
+
+sourceSets {
+    main { java { srcDir 'src/generated/jooq' } }
+}
+
+tasks.named("generateJooq").configure {
+    onlyIf { project.hasProperty("runJooq") }
+}
+
+tasks.named('jar') { enabled = false }
+tasks.named('bootJar') { archiveFileName = 'app.jar' }
+
+springBoot {
+    mainClass = 'project.ExamifyApplication'
 }

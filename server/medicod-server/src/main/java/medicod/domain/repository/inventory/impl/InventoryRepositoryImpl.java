@@ -1,7 +1,5 @@
 package medicod.domain.repository.inventory.impl;
 
-import com.medicod.database.tables.records.MedicodInventoryRecord;
-import com.medicod.database.tables.records.MedicodMedicationsRecord;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import medicod.domain.repository.inventory.InventoryRepository;
@@ -13,12 +11,12 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-import static com.medicod.database.Tables.MEDICOD_INVENTORY;
-
 @RequiredArgsConstructor
 @Transactional
 @Repository
 public class InventoryRepositoryImpl implements InventoryRepository {
+
+    /*
 
     @Autowired
     private final DSLContext context;
@@ -105,5 +103,5 @@ public class InventoryRepositoryImpl implements InventoryRepository {
                         .and(lot == null ? MEDICOD_INVENTORY.LOT_CODE.isNull() : MEDICOD_INVENTORY.LOT_CODE.eq(lot))
         );
     }
-
+     */
 }

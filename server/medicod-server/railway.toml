@@ -1,3 +1,0 @@
-[env]
-SPRING_PROFILES_ACTIVE = "railway"
-SERVER_CONTEXT_PATH = "/"

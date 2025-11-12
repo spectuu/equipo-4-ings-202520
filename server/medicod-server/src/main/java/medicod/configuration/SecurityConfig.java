@@ -21,12 +21,15 @@ import java.util.List;
 @EnableWebSecurity
 @RequiredArgsConstructor
 public class SecurityConfig {
+/*
 
     @Autowired
-    private JWTConfig jwtConfig;
+   // private JWTConfig jwtConfig;
 
     @Autowired
     private AuthenticationProvider authProvider;
+
+ */
 
     @Bean
     public SecurityFilterChain configure(HttpSecurity http) throws Exception {
@@ -39,8 +42,8 @@ public class SecurityConfig {
                         .anyRequest().authenticated()
                 )
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-                .authenticationProvider(authProvider)
-                .addFilterBefore(jwtConfig, UsernamePasswordAuthenticationFilter.class)
+               // .authenticationProvider(authProvider)
+              //  .addFilterBefore(jwtConfig, UsernamePasswordAuthenticationFilter.class)
                 .build();
     }
 

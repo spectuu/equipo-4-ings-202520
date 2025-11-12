@@ -1,7 +1,5 @@
 package medicod.domain.service.inventory;
 
-import com.medicod.database.tables.records.MedicodInventoryRecord;
-import com.medicod.database.tables.records.MedicodMedicationsRecord;
 import lombok.extern.slf4j.Slf4j;
 import medicod.domain.dto.BasicResponse;
 import medicod.domain.dto.inventory.InventoryCreateRequest;
@@ -25,12 +23,12 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
-import static com.medicod.database.Tables.MEDICOD_INVENTORY;
-import static com.medicod.database.Tables.MEDICOD_MEDICATIONS;
 
 @Slf4j
 @Service
 public class InventoryService {
+
+    /*
 
     @Autowired
     private DSLContext ctx;
@@ -40,8 +38,6 @@ public class InventoryService {
 
     @Autowired
     private MedicationRepository medicationRepo;
-
-    /* ------------------------ Helpers ------------------------ */
 
     private static String normalizeLot(String lot) {
         return ObjectUtils.isEmpty(lot) ? null : lot.trim().toUpperCase();
@@ -81,7 +77,13 @@ public class InventoryService {
 
     }
 
+
+     */
+
     /* ------------------------ Services ------------------------ */
+
+    /*
+
     public ResponseEntity<BasicResponse> addMedicationToInventory(long userId, InventoryCreateRequest req) {
 
         if (req.getQuantity() < 0) return bad("Quantity must be >= 0", HttpStatus.BAD_REQUEST);
@@ -279,5 +281,6 @@ public class InventoryService {
         );
 
     }
+         */
 
 }

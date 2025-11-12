@@ -1,6 +1,5 @@
 package medicod.configuration;
 
-import com.medicod.database.tables.records.MedicodUsersRecord;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
@@ -35,7 +34,7 @@ public class AppConfig {
     @Bean
     public AuthenticationProvider authenticationProvider() {
         DaoAuthenticationProvider authenticationProvider = new DaoAuthenticationProvider();
-        authenticationProvider.setUserDetailsService(userDetailService());
+        // authenticationProvider.setUserDetailsService(userDetailService());
         authenticationProvider.setPasswordEncoder(passwordEncoder());
         return authenticationProvider;
     }
@@ -44,13 +43,17 @@ public class AppConfig {
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
-
+    /*
     @Bean
     public UserDetailsService userDetailService() {
 
+
+
+
+
         return username -> {
 
-            MedicodUsersRecord account = accountsRepository.getAccountByUsername(username);
+           // MedicodUsersRecord account = accountsRepository.getAccountByUsername(username);
 
             if (account == null) {
                 throw new UsernameNotFoundException("User not found with email: " + username);
@@ -63,7 +66,11 @@ public class AppConfig {
                     .role(account.getRole())
                     .build();
 
-        };
+        };}
+
+
     }
+
+     */
 
 }
