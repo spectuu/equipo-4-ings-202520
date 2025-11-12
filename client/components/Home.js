@@ -135,7 +135,8 @@ const Home = () => {
           >
             Inventario
           </button>
-          <button className="main-button reminders-button">
+          <button className="main-button reminders-button"
+          onClick={() => router.push('/reminders')}>
             Recordatorios
           </button>
         </div>
