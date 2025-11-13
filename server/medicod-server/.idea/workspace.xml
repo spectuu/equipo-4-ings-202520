@@ -5,14 +5,55 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2796617a-2808-4ce5-b27e-15403351ac12" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../../client/components/Inventory.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../client/components/Inventory.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../client/components/SignupForm.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../client/components/SignupForm.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../client/styles/globals.css" beforeDir="false" afterPath="$PROJECT_DIR$/../../client/styles/globals.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/medicod/controller/reminder/ReminderController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/medicod/domain/dto/reminders/ReminderCreateRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/medicod/domain/dto/reminders/ReminderResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/medicod/domain/dto/reminders/ReminderUpdateRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/medicod/domain/repository/reminder/ReminderRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/medicod/domain/repository/reminder/impl/ReminderRepositoryImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/medicod/domain/service/reminder/ReminderService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/medicod/notifications/EmailService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/medicod/notifications/EmailTemplates.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/medicod/notifications/InventoryScheduler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/medicod/notifications/ReminderScheduler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../client/components/Home.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../client/components/Home.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.dockerignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.10/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.10/checksums/checksums.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.10/checksums/md5-checksums.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.10/checksums/md5-checksums.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.10/checksums/sha1-checksums.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.10/checksums/sha1-checksums.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/8.10/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.10/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/8.10/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.10/fileHashes/fileHashes.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/8.10/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.10/fileHashes/fileHashes.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.railwayignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/DEPLOYMENT-GUIDE.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/DOCKER-README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Dockerfile.railway" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Procfile" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle.kts.railway" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/diagnose.ps1" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/diagnose.sh" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gradle-wrapper.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gradle-wrapper.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/init-db.sh" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/railpack-plan.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/railway-init.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/railway.toml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/medicod/MedicodApiApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/medicod/MedicodApiApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application-docker.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application-railway.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/data-railway.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/examify database.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/start.ps1" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/start.sh" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/system.properties" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -89,9 +130,10 @@
     "RequestMappingsPanelOrder1": "1",
     "RequestMappingsPanelWidth0": "75",
     "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
     "Spring Boot.MedicodApiApplication.executor": "Run",
-    "git-widget-placeholder": "development",
+    "git-widget-placeholder": "stage",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/Users/SoySp/OneDrive/Escritorio/examify/examify-server",
     "node.js.detected.package.eslint": "true",
@@ -109,6 +151,9 @@
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\SoySp\OneDrive\Escritorio\University\equipo-4-ings-202520\server\medicod-server\src\main\resources" />
       <recent name="C:\Users\SoySp\OneDrive\Escritorio\University\equipo-4-ings-202520\server\medicod-server\src\main\java\medicod" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\SoySp\OneDrive\Escritorio\equipo-4-ings-202520\server\medicod-server\src" />
     </key>
   </component>
   <component name="RunManager">
@@ -156,6 +201,7 @@
       <workItem from="1761569806130" duration="307000" />
       <workItem from="1761596452490" duration="4000" />
       <workItem from="1761596493433" duration="75000" />
+      <workItem from="1762999857299" duration="9109000" />
     </task>
     <servers />
   </component>
