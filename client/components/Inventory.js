@@ -13,6 +13,28 @@ const Inventory = () => {
     }
   }, [router]);
 
+  useEffect(() => {
+    const setCustomValidity = () => {
+      const inputs = document.querySelectorAll('input[required], select[required]');
+      inputs.forEach(input => {
+        input.addEventListener('invalid', () => {
+          if (input.validity.valueMissing) {
+            input.setCustomValidity('Por favor, completa este campo');
+          } else if (input.validity.typeMismatch) {
+            input.setCustomValidity('Por favor, ingresa un valor válido');
+          } else if (input.validity.rangeUnderflow) {
+            input.setCustomValidity('El valor debe ser mayor o igual a ' + input.min);
+          }
+        });
+        input.addEventListener('input', () => {
+          input.setCustomValidity('');
+        });
+      });
+    };
+
+    setCustomValidity();
+  }, [showAdd, editingId]);
+
   const [items, setItems] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
@@ -78,19 +100,26 @@ const Inventory = () => {
     setAddForm((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleAddSubmit = async (e) => {
+    const handleAddSubmit = async (e) => {
     e.preventDefault();
+
+    const quantity = Number(addForm.quantity || 0);
+    if (quantity < 1) {
+      setError('La cantidad debe ser mayor a 0');
+      setTimeout(() => setError(''), 4000);
+      return;
+    }
+
     try {
       setSaving(true);
       const result = await InventoryApi.add({
         medicationName: addForm.medicationName.trim(),
-        quantity: Number(addForm.quantity || 0),
+        quantity: quantity,
         unit: addForm.unit.trim() || null,
         lotCode: addForm.lotCode.trim() || null,
         expires: addForm.expires || null,
         medicationDescription: addForm.medicationDescription.trim() || null
       });
-      // recargar lista
       setLoading(true);
       const data = await InventoryApi.mine();
       setItems(Array.isArray(data) ? data : []);
@@ -124,10 +153,18 @@ const Inventory = () => {
 
   const handleEditSubmit = async (e) => {
     e.preventDefault();
+
+    const quantity = editForm.quantity === '' ? null : Number(editForm.quantity);
+    if (quantity !== null && quantity < 1) {
+      setError('La cantidad debe ser mayor a 0');
+      setTimeout(() => setError(''), 4000);
+      return;
+    }
+
     try {
       setSaving(true);
       const payload = {
-        quantity: editForm.quantity === '' ? null : Number(editForm.quantity),
+        quantity: quantity,
         unit: editForm.unit || null,
         lotCode: editForm.lotCode || null,
         expires: editForm.expires || null
@@ -361,7 +398,7 @@ const Inventory = () => {
               <h2 style={{marginBottom: 16}}>Registrar medicamento</h2>
               <form onSubmit={handleAddSubmit} className="medication-form-grid">
                 <div className="form-group">
-                  <label>Nombre</label>
+                  <label>Nombre <span className="required-field">*</span></label>
                   <input
                     name="medicationName"
                     value={addForm.medicationName}
@@ -372,11 +409,11 @@ const Inventory = () => {
                   />
                 </div>
                 <div className="form-group">
-                  <label>Cantidad</label>
+                  <label>Cantidad <span className="required-field">*</span></label>
                   <input
                     name="quantity"
                     type="number"
-                    min="0"
+                    min="1"
                     value={addForm.quantity}
                     onChange={handleAddChange}
                     placeholder="Ej: 24"
@@ -384,14 +421,24 @@ const Inventory = () => {
                   />
                 </div>
                 <div className="form-group">
-                  <label>Unidad</label>
-                  <input
+                  <label>Unidad <span className="required-field">*</span></label>
+                  <select
                     name="unit"
                     value={addForm.unit}
                     onChange={handleAddChange}
-                    placeholder="Tabletas / ml / cápsulas"
-                    maxLength={16}
-                  />
+                    required
+                  >
+                    <option value="">Selecciona una unidad</option>
+                    <option value="Tabletas">Tabletas</option>
+                    <option value="Cápsulas">Cápsulas</option>
+                    <option value="ml">Mililitros (ml)</option>
+                    <option value="mg">Miligramos (mg)</option>
+                    <option value="g">Gramos (g)</option>
+                    <option value="Sobres">Sobres</option>
+                    <option value="Ampolletas">Ampolletas</option>
+                    <option value="Gotas">Gotas</option>
+                    <option value="Unidades">Unidades</option>
+                  </select>
                 </div>
                 <div className="form-group">
                   <label>Lote</label>
@@ -437,11 +484,11 @@ const Inventory = () => {
               <h2 style={{marginBottom: 16}}>Editar medicamento</h2>
               <form onSubmit={handleEditSubmit} className="medication-form-grid">
                 <div className="form-group">
-                  <label>Cantidad</label>
+                  <label>Cantidad <span className="required-field">*</span></label>
                   <input
                     name="quantity"
                     type="number"
-                    min="0"
+                    min="1"
                     value={editForm.quantity}
                     onChange={handleEditChange}
                     required
@@ -449,12 +496,22 @@ const Inventory = () => {
                 </div>
                 <div className="form-group">
                   <label>Unidad</label>
-                  <input
+                  <select
                     name="unit"
                     value={editForm.unit}
                     onChange={handleEditChange}
-                    maxLength={16}
-                  />
+                  >
+                    <option value="">Selecciona una unidad</option>
+                    <option value="Tabletas">Tabletas</option>
+                    <option value="Cápsulas">Cápsulas</option>
+                    <option value="ml">Mililitros (ml)</option>
+                    <option value="mg">Miligramos (mg)</option>
+                    <option value="g">Gramos (g)</option>
+                    <option value="Sobres">Sobres</option>
+                    <option value="Ampolletas">Ampolletas</option>
+                    <option value="Gotas">Gotas</option>
+                    <option value="Unidades">Unidades</option>
+                  </select>
                 </div>
                 <div className="form-group">
                   <label>Lote</label>
