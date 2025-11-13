@@ -1,6 +1,5 @@
 package medicod.configuration.mapper;
 
-import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -19,7 +18,6 @@ import java.util.List;
 @NoArgsConstructor
 public class UserMapper implements UserDetails {
 
-    @Id
     private ULong id;
 
     private String username;

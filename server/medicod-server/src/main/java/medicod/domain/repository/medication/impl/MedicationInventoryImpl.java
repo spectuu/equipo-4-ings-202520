@@ -1,6 +1,6 @@
 package medicod.domain.repository.medication.impl;
 
-import jakarta.transaction.Transactional;
+import org.springframework.transaction.annotation.Transactional;
 import lombok.RequiredArgsConstructor;
 import medicod.domain.repository.medication.MedicationRepository;
 import org.jooq.DSLContext;

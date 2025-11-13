@@ -1,6 +1,6 @@
 package medicod.domain.repository.inventory.impl;
 
-import jakarta.transaction.Transactional;
+import org.springframework.transaction.annotation.Transactional;
 import lombok.RequiredArgsConstructor;
 import medicod.domain.repository.inventory.InventoryRepository;
 import medicod.domain.repository.medication.MedicationRepository;
