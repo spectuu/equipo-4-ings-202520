@@ -4,7 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2796617a-2808-4ce5-b27e-15403351ac12" name="Changes" comment="" />
+    <list default="true" id="2796617a-2808-4ce5-b27e-15403351ac12" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.gradle/8.10/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.10/fileHashes/fileHashes.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -77,6 +80,7 @@
   "keyToString": {
     "Downloaded.Files.Path.Enabled": "false",
     "Gradle.Build medicod-server.executor": "Run",
+    "Gradle.medicod-server [dependencies].executor": "Run",
     "Repository.Attach.Annotations": "false",
     "Repository.Attach.JavaDocs": "false",
     "Repository.Attach.Sources": "false",
@@ -107,7 +111,29 @@
       <recent name="C:\Users\SoySp\OneDrive\Escritorio\University\equipo-4-ings-202520\server\medicod-server\src\main\java\medicod" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Gradle.medicod-server [dependencies]">
+    <configuration name="medicod-server [dependencies]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="dependencies" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>false</RunAsTest>
+      <method v="2" />
+    </configuration>
     <configuration name="MedicodApiApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
       <module name="medicod-server.main" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="medicod.MedicodApiApplication" />
@@ -123,6 +149,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Gradle.medicod-server [dependencies]" />
         <item itemvalue="Spring Boot.MedicodApiApplication" />
       </list>
     </recent_temporary>
@@ -152,7 +179,7 @@
       <workItem from="1761569806130" duration="307000" />
       <workItem from="1761596452490" duration="4000" />
       <workItem from="1761596493433" duration="75000" />
-      <workItem from="1762980587524" duration="7503000" />
+      <workItem from="1762980587524" duration="8663000" />
     </task>
     <servers />
   </component>

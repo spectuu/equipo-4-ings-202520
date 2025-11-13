@@ -110,5 +110,5 @@ tasks.named('jar') { enabled = false }
 tasks.named('bootJar') { archiveFileName = 'app.jar' }
 
 springBoot {
-    mainClass = 'project.ExamifyApplication'
+    mainClass = 'medicod.MedicodApiApplication'
 }
