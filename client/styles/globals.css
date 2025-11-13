@@ -216,6 +216,25 @@ a {
   color: #bbb;
 }
 
+.form-group select {
+  width: 100%;
+  padding: 16px;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  font-size: 16px;
+  background-color: #fff;
+  color: #333;
+  box-sizing: border-box;
+  transition: border-color 0.2s ease;
+  cursor: pointer;
+  appearance: auto;
+}
+
+.form-group select:focus {
+  outline: none;
+  border-color: #d2691e;
+}
+
 .form-group input.input-error {
   border-color: #dc2626;
   background-color: #fef2f2;
@@ -232,6 +251,35 @@ a {
   font-size: 13px;
   margin-top: 6px;
   font-weight: 400;
+}
+
+.password-requirements {
+  margin-top: 10px;
+  padding: 12px;
+  background-color: #f9fafb;
+  border-radius: 6px;
+  border: 1px solid #e5e7eb;
+}
+
+.password-requirements > div {
+  font-size: 13px;
+  margin-bottom: 6px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.password-requirements > div:last-child {
+  margin-bottom: 0;
+}
+
+.requirement-met {
+  color: #059669;
+  font-weight: 500;
+}
+
+.requirement-unmet {
+  color: #6b7280;
 }
 
 .error-message {
@@ -609,6 +657,14 @@ a {
   margin-right: 12px;
   min-width: 240px;
   box-shadow: 0 1px 2px rgba(0,0,0,0.04) inset;
+  font-size: 16px;
+  color: #1f2937;
+  font-weight: 500;
+}
+
+.search-input::placeholder {
+  color: #4b5563;
+  font-weight: 400;
 }
 
 .search-container {
@@ -621,8 +677,8 @@ a {
 .search-icon {
   position: absolute;
   left: 10px;
-  color: #999;
-  font-size: 14px;
+  color: #374151;
+  font-size: 16px;
 }
 
 .search-container .search-input {
@@ -816,6 +872,12 @@ a {
   font-weight: 500;
 }
 
+.required-field {
+  color: #dc2626;
+  font-weight: bold;
+  margin-left: 2px;
+}
+
 .success-text {
   margin-top: 12px;
   color: #065f46;
@@ -823,6 +885,15 @@ a {
   border: 1px solid #a7f3d0;
   padding: 10px 12px;
   border-radius: 8px;
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 9999;
+  min-width: 300px;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  animation: slideDown 0.3s ease-out;
 }
 
 .error-text {
@@ -832,6 +903,26 @@ a {
   border: 1px solid #fecaca;
   padding: 10px 12px;
   border-radius: 8px;
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 9999;
+  min-width: 300px;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  animation: slideDown 0.3s ease-out;
+}
+
+@keyframes slideDown {
+  from {
+    top: -100px;
+    opacity: 0;
+  }
+  to {
+    top: 20px;
+    opacity: 1;
+  }
 }
 
 .empty-state {
@@ -863,6 +954,32 @@ a {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 16px;
+}
+
+.medication-form-grid input[type="date"] {
+  padding: 16px;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  font-size: 16px;
+  background-color: #fff;
+  color: #333;
+  box-sizing: border-box;
+  transition: border-color 0.2s ease;
+  cursor: pointer;
+  min-height: 50px;
+}
+
+.medication-form-grid input[type="date"]::-webkit-calendar-picker-indicator {
+  cursor: pointer;
+  font-size: 18px;
+  padding: 4px;
+  background-color: transparent;
+  color: #d2691e;
+}
+
+.medication-form-grid input[type="date"]:focus {
+  outline: none;
+  border-color: #d2691e;
 }
 
 .btn-primary {
@@ -1003,11 +1120,6 @@ a {
   left: 0;
   right: 0;
   bottom: 0;
-  background-image: 
-    radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
-    radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
-    radial-gradient(circle at 40% 40%, rgba(120, 119, 198, 0.2) 0%, transparent 50%);
-  animation: float 20s ease-in-out infinite;
   pointer-events: none;
 }
 

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { login } from '../api/auth';
@@ -13,6 +13,26 @@ const LoginForm = () => {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const setCustomValidity = () => {
+      const inputs = document.querySelectorAll('input[required]');
+      inputs.forEach(input => {
+        input.addEventListener('invalid', () => {
+          if (input.validity.valueMissing) {
+            input.setCustomValidity('Por favor, completa este campo');
+          } else if (input.validity.typeMismatch) {
+            input.setCustomValidity('Por favor, ingresa un valor válido');
+          }
+        });
+        input.addEventListener('input', () => {
+          input.setCustomValidity('');
+        });
+      });
+    };
+
+    setCustomValidity();
+  }, []);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
