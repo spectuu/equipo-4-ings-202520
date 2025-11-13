@@ -15,8 +15,6 @@ java {
 repositories { mavenCentral() }
 
 dependencies {
-
-    // Spring Boot starters
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.boot:spring-boot-starter-jdbc'
     implementation 'org.springframework.boot:spring-boot-starter-jooq'
@@ -25,7 +23,6 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-websocket'
     implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.6.0'
 
-    // Jakarta APIs (ya añadidas correctamente)
     implementation 'jakarta.transaction:jakarta.transaction-api:2.0.1'
     implementation 'jakarta.persistence:jakarta.persistence-api:3.1.0'
 
@@ -50,6 +47,14 @@ dependencies {
     jooqGenerator 'org.jooq:jooq-meta:3.19.19'
     jooqGenerator 'org.jooq:jooq-codegen:3.19.19'
     jooqGenerator 'com.mysql:mysql-connector-j:9.0.0'
+}
+
+sourceSets {
+    main {
+        java {
+            srcDir 'src/generated/jooq'
+        }
+    }
 }
 
 jooq {
@@ -95,16 +100,10 @@ jooq {
     }
 }
 
-sourceSets {
-    main { java { srcDir 'src/generated/jooq' } }
-}
-
-// Only run jOOQ if called with -PrunJooq
 tasks.named("generateJooq").configure {
     onlyIf { project.hasProperty("runJooq") }
 }
 
-// Disable regular jar, produce bootJar
 tasks.named('jar') { enabled = false }
 tasks.named('bootJar') { archiveFileName = 'app.jar' }
 
