@@ -1,0 +1,1017 @@
+/* Estilos globales de la aplicación */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  max-width: 100vw;
+  overflow-x: hidden;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: linear-gradient(
+      to bottom,
+      transparent,
+      rgb(var(--background-end-rgb))
+    )
+    rgb(var(--background-start-rgb));
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+@media (prefers-color-scheme: dark) {
+  html {
+    color-scheme: dark;
+  }
+}
+
+/* Variables CSS */
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 0, 0, 0;
+    --background-end-rgb: 0, 0, 0;
+  }
+}
+
+/* Landing page styles */
+.landing-container {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.landing-content {
+  text-align: center;
+  color: white;
+  max-width: 600px;
+}
+
+.landing-title {
+  font-size: 4rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+}
+
+.landing-subtitle {
+  font-size: 1.5rem;
+  margin-bottom: 3rem;
+  opacity: 0.9;
+}
+
+.landing-buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.cta-button {
+  padding: 15px 30px;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+}
+
+.cta-button.primary {
+  background-color: #d2691e;
+  color: white;
+}
+
+.cta-button.primary:hover {
+  background-color: #b85c1a;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(210, 105, 30, 0.4);
+}
+
+.cta-button.secondary {
+  background-color: transparent;
+  color: white;
+  border-color: white;
+}
+
+.cta-button.secondary:hover {
+  background-color: white;
+  color: #667eea;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(255, 255, 255, 0.3);
+}
+
+/* Estilos para el formulario de registro - nuevo diseño minimalista */
+.signup-container {
+  min-height: 100vh;
+  background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.signup-form {
+  background-color: white;
+  padding: 40px;
+  width: 100%;
+  max-width: 400px;
+
+}
+
+.signup-title {
+  font-size: 32px;
+  font-weight: 500;
+  color: #333;
+  text-align: left;
+  margin-bottom: 40px;
+  margin-top: 0;
+}
+
+/* Estilos para el formulario de login - nuevo diseño minimalista */
+.login-container {
+  min-height: 100vh;
+  background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.login-form {
+  background-color: white;
+  padding: 40px;
+  width: 100%;
+  max-width: 400px;
+}
+
+.login-title {
+  font-size: 32px;
+  font-weight: 500;
+  color: #333;
+  text-align: left;
+  margin-bottom: 40px;
+  margin-top: 0;
+  letter-spacing: -0.5px;
+}
+
+.form-group {
+  margin-bottom: 24px;
+  position: relative;
+  
+}
+
+.form-group label {
+  display: block;
+  font-size: 16px;
+  font-weight: 400;
+  color: #666;
+  margin-bottom: 8px;
+  transition: color 0.3s ease;
+}
+
+.form-group input {
+  width: 100%;
+
+  padding: 16px;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  font-size: 16px;
+  background-color: #fff;
+  color: #333;
+  box-sizing: border-box;
+  transition: border-color 0.2s ease;
+
+}
+
+.form-group input:focus {
+  outline: none;
+  border-color: #d2691e;
+}
+
+.form-group input::placeholder {
+  color: #bbb;
+}
+
+.form-group input.input-error {
+  border-color: #dc2626;
+  background-color: #fef2f2;
+}
+
+.form-group input.input-error:focus {
+  border-color: #dc2626;
+  box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.1);
+}
+
+.field-error-message {
+  display: block;
+  color: #dc2626;
+  font-size: 13px;
+  margin-top: 6px;
+  font-weight: 400;
+}
+
+.error-message {
+  background-color: #fee2e2;
+  color: #991b1b;
+  padding: 12px 16px;
+  border-radius: 8px;
+  margin-bottom: 16px;
+  font-size: 14px;
+  border: 1px solid #fecaca;
+}
+
+.register-button {
+  width: 100%;
+  padding: 16px;
+  background-color: #d2691e;
+  color: #fff;
+  border: none;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  margin-top: 16px;
+  margin-bottom: 24px;
+}
+
+.register-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(102, 126, 234, 0.3);
+}
+
+.register-button:active {
+  transform: translateY(0);
+  box-shadow: 0 5px 15px rgba(102, 126, 234, 0.2);
+}
+
+.register-button:disabled {
+  background-color: #bbb;
+  cursor: not-allowed;
+}
+
+/* Botón de login - nuevo diseño */
+.login-button {
+  width: 100%;
+  padding: 16px;
+  background-color: #d2691e;
+  color: #fff;
+  border: none;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  margin-top: 16px;
+  margin-bottom: 24px;
+}
+
+.login-button:hover {
+  background-color: #b85c1a;
+}
+
+.login-button:active {
+  background-color: #a0520d;
+}
+
+.login-button:disabled {
+  background-color: #bbb;
+  cursor: not-allowed;
+}
+
+.register-redirect-button {
+  width: 100%;
+  padding: 16px;
+  background-color: #f0f0f0;
+  color: #333;
+  border: none;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  margin-bottom: 24px;
+}
+
+.register-redirect-button:hover {
+  background-color: #e0e0e0;
+}
+
+.forgot-password {
+  text-align: center;
+  color: #666;
+  font-size: 14px;
+  margin: 0;
+  cursor: pointer;
+}
+
+.forgot-password:hover {
+  color: #d2691e;
+}
+
+.login-link,
+.signup-link {
+  text-align: center;
+  color: #666;
+  font-size: 14px;
+  margin: 0;
+}
+
+.login-link a,
+.signup-link a {
+  color: #d2691e;
+  text-decoration: none;
+}
+
+.login-link a:hover,
+.signup-link a:hover {
+  text-decoration: underline;
+}
+
+.form-error {
+  background-color: #f8d7da;
+  color: #721c24;
+  padding: 10px;
+  border-radius: 6px;
+  margin-bottom: 15px;
+  text-align: center;
+  border: 1px solid #f5c6cb;
+  font-size: 14px;
+}
+
+.login-link-text {
+  color: #007bff;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: underline;
+}
+
+.login-link-text:hover {
+  color: #0056b3;
+  text-shadow: 0 0 8px rgba(0, 123, 255, 0.5);
+  transform: scale(1.05);
+}
+
+/* Estilos para la página Home */
+.home-container {
+  min-height: 100vh;
+  background-color: #f5f5f5;
+  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.home-content {
+  background-color: white;
+  min-height: 100vh;
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  position: relative;
+}
+
+.home-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.greeting h1 {
+  font-size: 28px;
+  font-weight: 500;
+  color: #333;
+  margin: 0;
+}
+
+.user-menu {
+  position: relative;
+}
+
+.user-menu-button {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #e0e0e0;
+  border: none;
+  font-size: 18px;
+  font-weight: bold;
+  color: #666;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.user-menu-dropdown {
+  position: absolute;
+  top: 45px;
+  right: 0;
+  background-color: white;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  min-width: 150px;
+  z-index: 1000;
+}
+
+.menu-item {
+  display: block;
+  width: 100%;
+  padding: 12px 16px;
+  text-align: left;
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-size: 14px;
+  color: #333;
+}
+
+.menu-item:hover {
+  background-color: #f5f5f5;
+}
+
+.menu-item:first-child {
+  border-radius: 8px 8px 0 0;
+}
+
+.menu-item:last-child {
+  border-radius: 0 0 8px 8px;
+}
+
+.datetime-section {
+  margin-bottom: 40px;
+}
+
+.current-date {
+  font-size: 16px;
+  color: #888;
+  margin: 0 0 5px 0;
+  text-transform: capitalize;
+}
+
+.current-time {
+  font-size: 48px;
+  font-weight: 300;
+  color: #333;
+  margin: 0;
+  line-height: 1;
+}
+
+.reminders-section {
+  margin-bottom: 40px;
+}
+
+.reminders-section h3 {
+  font-size: 18px;
+  font-weight: 500;
+  color: #333;
+  margin: 0 0 20px 0;
+}
+
+.reminders-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.reminder-item {
+  display: flex;
+  align-items: center;
+  background-color: #f8f9fa;
+  padding: 16px;
+  border-radius: 12px;
+  border: 1px solid #e9ecef;
+}
+
+.reminder-icon {
+  color: #d2691e;
+  margin-right: 16px;
+  flex-shrink: 0;
+}
+
+.reminder-content {
+  flex: 1;
+}
+
+.reminder-time {
+  font-size: 16px;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 4px;
+}
+
+.reminder-medication {
+  font-size: 14px;
+  color: #666;
+}
+
+.main-buttons {
+  display: flex;
+  gap: 16px;
+  margin-top: 40px;
+}
+
+.main-button {
+  flex: 1;
+  padding: 20px;
+  border: none;
+  border-radius: 16px;
+  font-size: 16px;
+  font-weight: 500;
+  color: white;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.inventory-button {
+  background-color: #d2691e;
+}
+
+.inventory-button:hover {
+  background-color: #b85c1a;
+}
+
+.reminders-button {
+  background-color: #4A90E2;
+}
+
+.reminders-button:hover {
+  background-color: #357ABD;
+}
+
+/* Estilos para la página de inventario */
+.inventory-container {
+  min-height: 100vh;
+  background-color: #f5f5f5;
+  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.inventory-content {
+  background-color: white;
+  min-height: 100vh;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.inventory-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 30px;
+  gap: 20px;
+}
+
+.back-button {
+  background: none;
+  border: 1px solid #ddd;
+  padding: 8px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  color: #666;
+  transition: all 0.2s ease;
+}
+
+.back-button:hover {
+  background-color: #f0f0f0;
+  border-color: #bbb;
+}
+
+.search-input {
+  padding: 12px 14px;
+  border: 1px solid #e0e0e0;
+  border-radius: 10px;
+  margin-right: 12px;
+  min-width: 240px;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.04) inset;
+}
+
+.search-container {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  margin-right: 12px;
+}
+
+.search-icon {
+  position: absolute;
+  left: 10px;
+  color: #999;
+  font-size: 14px;
+}
+
+.search-container .search-input {
+  padding-left: 30px;
+}
+
+.clear-btn {
+  position: absolute;
+  right: 6px;
+  border: none;
+  background: transparent;
+  color: #999;
+  font-size: 18px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.edit-button {
+  padding: 6px 10px;
+  border-radius: 8px;
+  border: 1px solid #e0e0e0;
+  background: #f8f9fa;
+  color: #333;
+  font-size: 12px;
+  cursor: pointer;
+  transition: all .15s ease;
+}
+
+.edit-button:hover {
+  background: #eef2f7;
+  border-color: #d0d7de;
+}
+
+.inventory-header h1 {
+  font-size: 28px;
+  font-weight: 500;
+  color: #333;
+  margin: 0;
+}
+
+.medications-table-container {
+  overflow-x: auto;
+  margin-bottom: 30px;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.medications-table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: white;
+}
+
+.medications-table th {
+  background-color: #f8f9fa;
+  padding: 16px;
+  text-align: left;
+  font-weight: 600;
+  color: #555;
+  border-bottom: 2px solid #e9ecef;
+}
+
+.medications-table td {
+  padding: 16px;
+  border-bottom: 1px solid #e9ecef;
+  vertical-align: top;
+}
+
+.medications-table tr:hover {
+  background-color: #f8f9fa;
+}
+
+.medications-table tr.expired {
+  background-color: #fff5f5;
+}
+
+.medications-table tr.expiring-soon {
+  background-color: #fffbeb;
+}
+
+.medications-table tr.low-stock {
+  background-color: #ecfeff;
+}
+
+.medication-name {
+  font-weight: 500;
+  color: #333;
+  position: relative;
+}
+
+.medication-description {
+  color: #666;
+  max-width: 300px;
+  line-height: 1.4;
+}
+
+.quantity-cell,
+.unit-cell,
+.lot-cell {
+  color: #333;
+}
+
+.expiration-date,
+.date-added {
+  font-family: 'SF Mono', Monaco, monospace;
+  font-size: 14px;
+  color: #666;
+}
+
+.status-badge {
+  display: inline-block;
+  margin-left: 8px;
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-size: 11px;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
+.expired-badge {
+  background-color: #fee2e2;
+  color: #dc2626;
+}
+
+.warning-badge {
+  background-color: #fef3c7;
+  color: #d97706;
+}
+
+.low-stock-badge {
+  background-color: #cffafe;
+  color: #0891b2;
+}
+
+.inventory-summary {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.summary-item {
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  min-width: 150px;
+  flex: 1;
+  transition: all 0.2s ease;
+}
+
+.summary-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.summary-item.active {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  transform: scale(1.02);
+  background-color: #f8f9fa;
+}
+
+.summary-item.warning {
+  border-left: 4px solid #d97706;
+}
+
+.summary-item.danger {
+  border-left: 4px solid #dc2626;
+}
+
+.summary-number {
+  display: block;
+  font-size: 32px;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 8px;
+}
+
+.summary-item.warning .summary-number {
+  color: #d97706;
+}
+
+.summary-item.danger .summary-number {
+  color: #dc2626;
+}
+
+.summary-label {
+  display: block;
+  font-size: 14px;
+  color: #666;
+  font-weight: 500;
+}
+
+.success-text {
+  margin-top: 12px;
+  color: #065f46;
+  background: #d1fae5;
+  border: 1px solid #a7f3d0;
+  padding: 10px 12px;
+  border-radius: 8px;
+}
+
+.error-text {
+  margin-top: 12px;
+  color: #7f1d1d;
+  background: #fee2e2;
+  border: 1px solid #fecaca;
+  padding: 10px 12px;
+  border-radius: 8px;
+}
+
+.empty-state {
+  margin: 16px 0;
+  color: #666;
+}
+
+/* Modal base */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background: #fff;
+  width: 100%;
+  max-width: 560px;
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+
+.medication-form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.btn-primary {
+  padding: 12px 16px;
+  background-color: #d2691e;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.btn-secondary {
+  padding: 12px 16px;
+  background-color: #f0f0f0;
+  color: #333;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  margin-right: 8px;
+}
+
+.btn-danger {
+  padding: 12px 16px;
+  background-color: #dc2626;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+/* Responsive design */
+@media (max-width: 480px) {
+  .home-content {
+    padding: 16px;
+  }
+  
+  .greeting h1 {
+    font-size: 24px;
+  }
+  
+  .current-time {
+    font-size: 40px;
+  }
+  
+  .main-buttons {
+    flex-direction: column;
+  }
+
+  .signup-form,
+  .login-form {
+    padding: 30px 20px;
+    margin: 10px;
+  }
+  
+  .signup-title,
+  .login-title {
+    font-size: 28px;
+  }
+
+  .landing-title {
+    font-size: 2.5rem;
+  }
+
+  .landing-subtitle {
+    font-size: 1.2rem;
+  }
+
+  .landing-buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .cta-button {
+    width: 100%;
+    max-width: 250px;
+  }
+
+  /* Responsive para inventario */
+  .inventory-content {
+    padding: 16px;
+  }
+
+  .inventory-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .inventory-header h1 {
+    font-size: 24px;
+  }
+
+  .medications-table {
+    font-size: 14px;
+  }
+
+  .medications-table th,
+  .medications-table td {
+    padding: 12px 8px;
+  }
+
+  .medication-description {
+    max-width: 200px;
+  }
+
+  .inventory-summary {
+    flex-direction: column;
+  }
+
+  .summary-item {
+    min-width: auto;
+  }
+}/* Animaciones adicionales */
+.form-group input {
+  animation: fadeInUp 0.6s ease-out forwards;
+  animation-delay: calc(var(--animation-order, 0) * 0.1s);
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.form-group:nth-child(1) input { --animation-order: 1; }
+.form-group:nth-child(2) input { --animation-order: 2; }
+.form-group:nth-child(3) input { --animation-order: 3; }
+.form-group:nth-child(4) input { --animation-order: 4; }
+
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Efecto de partículas en el fondo */
+.signup-container::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 40% 40%, rgba(120, 119, 198, 0.2) 0%, transparent 50%);
+  animation: float 20s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-20px) rotate(180deg); }
+}
